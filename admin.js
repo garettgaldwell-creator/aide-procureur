@@ -141,12 +141,12 @@ function loadAdminInfractions() {
             
             item.innerHTML = `
                 <div class="admin-infraction-info">
-                    <h4>📌 ${inf.name}</h4>
+                    <h4>${inf.name}</h4>
                     <p>
-                        <span>📄 ${inf.article}</span>
-                        <span>⚖️ ${inf.category}</span>
-                        <span>⏱️ ${prisonDisplay}</span>
-                        <span>💰 ${amendeDisplay}</span>
+                        <span>${inf.article}</span>
+                        <span>${inf.category}</span>
+                        <span>${prisonDisplay}</span>
+                        <span>${amendeDisplay}</span>
                     </p>
                 </div>
                 <div style="color: var(--red-primary); font-size: 1.5rem;">✏️</div>

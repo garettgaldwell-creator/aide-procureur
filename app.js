@@ -76,6 +76,7 @@ function renderInfractionsList() {
     const container = document.getElementById('infractions-list');
     container.innerHTML = '';
     
+    // Afficher le CODE PÉNAL
     Object.entries(CODE_PENAL).forEach(([categoryKey, infractions]) => {
         const categoryDiv = document.createElement('div');
         categoryDiv.className = 'category-group';
@@ -112,7 +113,10 @@ function renderInfractionsList() {
             
             const penaltySpan = document.createElement('div');
             penaltySpan.className = 'infraction-penalty';
-            penaltySpan.textContent = `${infraction.article} • ${infraction.prison} ans • ${infraction.amende.toLocaleString()} $`;
+            const prisonText = infraction.prison ? `${infraction.prison} ans` : '';
+            const amendeText = infraction.amende ? `${infraction.amende.toLocaleString()} $` : '';
+            const separator = prisonText && amendeText ? ' • ' : '';
+            penaltySpan.textContent = `${infraction.article} • ${prisonText}${separator}${amendeText}`;
             
             labelDiv.appendChild(nameSpan);
             labelDiv.appendChild(penaltySpan);
@@ -126,25 +130,80 @@ function renderInfractionsList() {
         
         container.appendChild(categoryDiv);
     });
+    
+    // Afficher le CODE DE LA ROUTE (seulement les DÉLITS ROUTIERS)
+    if (CODE_ROUTE && CODE_ROUTE.DELITS_ROUTIERS) {
+        const categoryDiv = document.createElement('div');
+        categoryDiv.className = 'category-group';
+        
+        const categoryTitle = document.createElement('div');
+        categoryTitle.className = 'category-title';
+        categoryTitle.textContent = 'Délits routiers';
+        categoryDiv.appendChild(categoryTitle);
+        
+        CODE_ROUTE.DELITS_ROUTIERS.forEach(infraction => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'infraction-item';
+            
+            const label = document.createElement('label');
+            label.className = 'infraction-checkbox';
+            
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.dataset.id = infraction.id;
+            checkbox.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    addInfraction(infraction);
+                } else {
+                    removeInfraction(infraction.id);
+                }
+            });
+            
+            const labelDiv = document.createElement('div');
+            labelDiv.className = 'infraction-label';
+            
+            const nameSpan = document.createElement('div');
+            nameSpan.className = 'infraction-name';
+            nameSpan.textContent = infraction.name;
+            
+            const penaltySpan = document.createElement('div');
+            penaltySpan.className = 'infraction-penalty';
+            const prisonText = infraction.prison ? `${infraction.prison} ans` : '';
+            const amendeText = infraction.amende ? `${infraction.amende.toLocaleString()} $` : '';
+            const separator = prisonText && amendeText ? ' • ' : '';
+            penaltySpan.textContent = `${infraction.article} • ${prisonText}${separator}${amendeText}`;
+            
+            labelDiv.appendChild(nameSpan);
+            labelDiv.appendChild(penaltySpan);
+            
+            label.appendChild(checkbox);
+            label.appendChild(labelDiv);
+            
+            itemDiv.appendChild(label);
+            categoryDiv.appendChild(itemDiv);
+        });
+        
+        container.appendChild(categoryDiv);
+    }
 }
 
 function formatCategoryName(key) {
     const names = {
-        'HOMICIDES': '🔪 Homicides',
-        'BLESSURES': '🩹 Blessures',
-        'VIOLENCES_SEXUELLES': '⚠️ Violences sexuelles',
-        'ATTEINTES_PSYCHOLOGIQUES': '🧠 Atteintes psychologiques',
-        'AUTORITE': '👮 Atteintes à l\'autorité',
-        'VOIE_PUBLIQUE': '🚦 Voie publique',
-        'JUSTICE': '⚖️ Justice',
-        'ATTEINTE_HONNEUR': '🎭 Atteinte à l\'honneur',
-        'GRAND_BANDITISME': '💀 Grand banditisme',
-        'ARMES': '🔫 Armes',
-        'STUPEFIANTS': '💊 Stupéfiants',
-        'VOL': '💰 Vols',
-        'PROPRIETE': '🏠 Propriété',
-        'ADMINISTRATION': '🏛️ Administration',
-        'TRAHISON': '🏴 Trahison'
+        'HOMICIDES': 'Homicides',
+        'BLESSURES': 'Blessures',
+        'VIOLENCES_SEXUELLES': 'Violences sexuelles',
+        'ATTEINTES_PSYCHOLOGIQUES': 'Atteintes psychologiques',
+        'AUTORITE': 'Atteintes à l\'autorité',
+        'VOIE_PUBLIQUE': 'Voie publique',
+        'JUSTICE': 'Justice',
+        'ATTEINTE_HONNEUR': 'Atteinte à l\'honneur',
+        'GRAND_BANDITISME': 'Grand banditisme',
+        'ARMES': 'Armes',
+        'STUPEFIANTS': 'Stupéfiants',
+        'VOL': 'Vols',
+        'PROPRIETE': 'Propriété',
+        'ADMINISTRATION': 'Administration',
+        'TRAHISON': 'Trahison'
     };
     return names[key] || key;
 }
@@ -761,12 +820,12 @@ function formatCategoryNameForCode(key, codeType) {
     
     if (codeType === 'route') {
         const names = {
-            'PREMIERE_CLASSE': '📋 Contraventions de 1ère classe',
-            'DEUXIEME_CLASSE': '📋 Contraventions de 2ème classe',
-            'TROISIEME_CLASSE': '📋 Contraventions de 3ème classe',
-            'QUATRIEME_CLASSE': '📋 Contraventions de 4ème classe',
-            'CINQUIEME_CLASSE': '📋 Contraventions de 5ème classe',
-            'DELITS_ROUTIERS': '🚨 Délits routiers'
+            'PREMIERE_CLASSE': 'Contraventions de 1ère classe',
+            'DEUXIEME_CLASSE': 'Contraventions de 2ème classe',
+            'TROISIEME_CLASSE': 'Contraventions de 3ème classe',
+            'QUATRIEME_CLASSE': 'Contraventions de 4ème classe',
+            'CINQUIEME_CLASSE': 'Contraventions de 5ème classe',
+            'DELITS_ROUTIERS': 'Délits routiers'
         };
         return names[key] || key;
     }
