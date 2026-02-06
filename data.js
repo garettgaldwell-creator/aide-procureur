@@ -1589,43 +1589,567 @@ const CODES_CONTENT = {
     "jurisprudence": {
         title: "Répertoire de Jurisprudence",
         content: `
-            <h3>COUR SUPRÊME</h3>
-            <div class="code-article">
-                <div class="article-number">[P-2020-0701] WANG v. TENNESSEE GOVERNMENT</div>
-                <div class="article-content">
-                    La restriction des événements religieux sur la voie publique ne viole pas le Premier Amendement 
-                    si justifiée par la sécurité et le risque de troubles à l'ordre public.
-                </div>
+            <div style="background: #F5F5F5; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                <p style="font-style: italic; line-height: 1.8;">
+                    Le terme de jurisprudence désigne l'ensemble des décisions de justice relatives à une question juridique donnée. 
+                    Le code pénal défini la jurisprudence comme permettant, dans un cas non couvert par la loi ou lorsque celle-ci est imprécise, 
+                    à un tribunal de s'appuyer sur une décision prise dans un cas similaire par une juridiction supérieure ou à un article de loi similaire, 
+                    pour condamner quelqu'un (Art. 120-4 TNCP).
+                </p>
             </div>
+
+            <h3 style="color: #C8102E; border-bottom: 3px solid #F4E5C3; padding-bottom: 0.5rem; margin-top: 2rem;">COUR SUPRÊME</h3>
             
             <div class="code-article">
-                <div class="article-number">[P-2023-0601] Requête en inconstitutionnalité</div>
+                <div class="article-number">[P-2019-0701] BACKERWELL v. TAYLOR</div>
                 <div class="article-content">
-                    L'exhibition d'une arme à feu dans l'espace public (Open Carry) est inconstitutionnelle 
-                    en raison des risques pour la sécurité de la communauté.
+                    La cour estime qu'une publication émanant d'une personnalité politique affiliée à un parti politique, et ayant suscité un impact limité auprès du public, ne constitue pas une infraction aux dispositions régissant le processus électoral.
                 </div>
             </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2019-0702] VALLIUM v. TENNESSEE GOVERNMENT</div>
+                <div class="article-content">
+                    La Cour considère que la restriction des événements religieux organisés sur la voie publique ne constitue pas une violation du Premier Amendement, dès lors qu'elle est justifiée par des impératifs de sécurité liés au risque de troubles à l'ordre public.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2019-1001] KIRKMAN & KELLER v. TENNESSEE IDENTITY</div>
+                <div class="article-content">
+                    La Cour estime qu'une déclaration d'un gouverneur portant sur le bilan de son action, réalisée en période électorale, ne saurait, en elle-même, être qualifiée de propagande politique ni constituer une violation des règles encadrant le processus électoral.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2020-0301] KELLER v. TENNESSEE GOVERNMENT</div>
+                <div class="article-content">
+                    La Cour considère que la promulgation d'un décret d'état d'urgence par le gouverneur doit impérativement reposer sur l'existence d'un doute raisonnable justifiant son adoption, au regard de la nature liberticide de cette mesure, et que ladite mesure doit être strictement encadrée dans ses dimensions temporelles et géographiques.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2020-0501] STEWART v. TNPD</div>
+                <div class="article-content">
+                    La Cour affirme que la police comtale conserve en toutes circonstances la prérogative exclusive de la direction des opérations lorsque celles-ci se font avec le concours les forces de police municipale.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2020-0701] WANG v. REPUBLICAN PARTY</div>
+                <div class="article-content">
+                    La Cour considère qu'il est interdit de cumuler deux rémunérations issues de mandats électifs et, par extension, d'exercer des prérogatives supplémentaires lorsque l'intéressé est déjà membre d'un organe exécutif.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2022-0101] TENNESSEE v. SHALL & MURPHY</div>
+                <div class="article-content">
+                    La Cour juge que la détention provisoire demeure conforme à la loi lorsqu'elle est ordonnée par le procureur général sur la base d'éléments suffisants et dûment motivés justifiant la privation de liberté de l'individu, et à condition qu'elle ne dépasse pas une durée de trente jours.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2022-0501] HILL v. TENNESSEE GOVERNMENT</div>
+                <div class="article-content">
+                    La Cour considère qu'un projet de loi doit être soumis à l'examen et à l'approbation de la Cour suprême afin de garantir sa conformité avec la Constitution des Etats-Unis et la Constitution de l'État du Tennessee.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-4574-7757] ROSS v. TENNESSEE GOVERNMENT</div>
+                <div class="article-content">
+                    La Cour estime qu'un acte isolé, déterminé par un service des forces de l'ordre, ne saurait raisonnablement justifier la déclaration de l'état d'urgence en raison des mesures liberticides dudit décret.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2023-0601] Requête en inconstitutionnalité du 8 juin 2023</div>
+                <div class="article-content">
+                    La Cour considère que l'exhibition d'une arme à feu dans l'espace public (Open Carry) est inconstitutionnelle en raison des risques potentiels qu'elle engendre pour la sécurité de la communauté.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2023-0602] DERRICK v. BROWN</div>
+                <div class="article-content">
+                    La Cour considère que le bureau du procureur relève toujours de l'exécutif, qu'une juridiction peut désigner un procureur spécial pour enquêter sur des infractions pénales commises par le gouverneur, tout en contrôlant l'action de ce dernier, que l'instruction, incluant la désignation d'un procureur spécial, est soumise au contrôle de la Cour Suprême de l'État du Tennessee, et que la procédure d'Impeachment constitue une procédure de responsabilité politique fondée exclusivement sur la responsabilité pénale.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2023-0062] Saisine pour avis du 15 juillet 2023</div>
+                <div class="article-content">
+                    La Cour estime que la responsabilité pénale du gouverneur ne peut être engagée en raison de son immunité, mais que ses actions peuvent faire l'objet de poursuites civile au nom de l'institution qu'il représente, relevant de la responsabilité civile du gouvernement.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2024-0201] Saisine pour avis du 04 février 2024</div>
+                <div class="article-content">
+                    La Cour considère que, conformément à l'article susvisé, la commission d'impeachment, élue à chaque début de législature, dispose du pouvoir d'instruction et peut déclencher un procès en impeachment à l'unanimité de ses membres après avoir mené une instruction suffisante pour établir l'existence d'éléments justifiant cette procédure.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[C-S-000003] TENNESSEE GOVERNMENT v. BELFORT</div>
+                <div class="article-content">
+                    La Cour considère qu'une procédure de révocation initiée par le Gouverneur nécessite la validation de la Cour Suprême, qui doit constater un doute raisonnable lié à une ingérence ou un manquement grave dans l'exercice des fonctions du Procureur Général en respectant le principe du contradictoire, permettant au Procureur Général de produire un mémoire en défense, conformément au cadre constitutionnel et jurisprudentiel.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[C-S-000004] THEMIS LAWYER v. DCSO</div>
+                <div class="article-content">
+                    La Cour considère que le Sheriff peut adopter des mesures exceptionnelles pour la sécurité publique, sous réserve de leur légalité et du respect des prérogatives du Gouverneur. La fouille systématique est jugée contraire au Quatrième Amendement, sauf en cas de suspicions raisonnables ou d'enquêtes actives. Les restrictions sur la circulation sur les toits et la détention d'alcool sur la voie publique relèvent de sa compétence, dès lors qu'elles visent à prévenir des risques avérés pour la sécurité dont il en est le garant vis-à-vis des lois en vigueurs.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2024-1201] SHALL & CO v. TENNESSEE</div>
+                <div class="article-content">
+                    La Cour considère qu'un agent de la force publique, y compris au sein d'une unité spéciale, doit être identifiable par des moyens définis par sa hiérarchie, sauf en cas de cause probable de risque direct pour sa sécurité, et qu'il est tenu de fournir son identité policière en toutes circonstances, conformément aux exigences légales et constitutionnelles de transparence et de responsabilité.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[C-2025-2401] MOORE & HOWARD v. TNGOP</div>
+                <div class="article-content">
+                    La Cour considère qu'un parti politique ne peut être qualifié d'entreprise au sens du Code du travail, réaffirmant son caractère intrinsèquement politique et excluant toute analogie avec un employeur de droit commun, conformément aux principes régissant les organisations à vocation politique et à l'exclusion explicite de telles entités du champ d'application des dispositions relatives au droit du travail.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[CS-2025-29325] TNGOP v. TENNESSEE</div>
+                <div class="article-content">
+                    La Cour confirme la constitutionnalité de la loi interdisant les armes automatiques, estimant qu'elle constitue une mesure légitime et proportionnée pour concilier sécurité publique et respect des droits constitutionnels. La Cour rappelle que le Deuxième amendement ne garantit pas un droit illimité de posséder toutes les catégories d'armes.
+                </div>
+            </div>
+
+            <h3 style="color: #C8102E; border-bottom: 3px solid #F4E5C3; padding-bottom: 0.5rem; margin-top: 3rem;">COUR D'APPEL</h3>
             
-            <h3>COUR D'APPEL</h3>
+            <div class="code-article">
+                <div class="article-number">[18-981 BDRS] TENNESSEE v. JAMES</div>
+                <div class="article-content">
+                    La Cour considère qu'un département d'application de la loi ne peut être impliquée pour des mauvais traitements, des violences ou des sévices que des adjoints auraient causés durant l'exercice de leurs fonctions, seule la responsabilité pénale des adjoints peut être impliquée.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2020-1001] Saisine pour avis du 31 octobre 2020</div>
+                <div class="article-content">
+                    La Cour considère que la responsabilité d'un département d'application de la loi peut être engagée du fait des infractions commises, pour son compte, par l'un de ses organes ou représentants au sens du code de procédure pénale. En l'état il faut prouver que l'action des représentants légaux du département a causé une infraction ou une situation tendant inéluctablement à des dommages qui semblaient être évitables par l'intervention de ses derniers.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2020-1201] Saisine pour avis du 30 décembre 2020</div>
+                <div class="article-content">
+                    La Cour considère le fait de rentrer dans la propriété d'autrui pour lever un doute raisonnable qu'un crime ou délit est en train de se commettre n'autorise pas à effectuer une perquisition ou des saisies judiciaires puisqu'il s'agit d'une levée de doute — sauf s'il existe de manière évidente un fait manifestement illégal dans ladite propriété.
+                </div>
+            </div>
+
             <div class="code-article">
                 <div class="article-number">[P-2023-0601] DERRICK v. HOLLOWAY</div>
                 <div class="article-content">
-                    Un mandat de consultation de données médicales doit reposer sur un doute raisonnable 
-                    et être explicitement limité aux actes à consulter.
+                    La Cour considère qu'un mandat de consultation de données médicales, couvertes par le secret médical, doit reposer sur un doute raisonnable et être explicitement limité aux actes à consulter, dans le strict cadre de la nécessité de l'instruction en cours.
                 </div>
             </div>
+
+            <div class="code-article">
+                <div class="article-number">[A-0306-2024] TENNESSEE v. O'FARELL</div>
+                <div class="article-content">
+                    La Cour considère qu'une erreur de plume ne saurait être qualifiée de vice de forme, et ne constitue dès lors pas un motif légitime pour en demander la rectification ou l'ajout sous forme d'addendum.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[A-2024-3007] TENNESSEE v. SECESSIONIST PARTY OF TENNESSEE</div>
+                <div class="article-content">
+                    La Cour reconnaît qu'une charge non transmise à la défense constitue un manquement procédural mais ne peut raisonnablement annuler l'entièreté des charges émises contre un prévenu, au regard de la jurisprudence existante.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[A-2024-0911] Saisine pour question de droit du 27 septembre 2024</div>
+                <div class="article-content">
+                    La Cour reconnaît que toute restriction à l'accès d'un avocat, justifiée par des motifs de sécurité ou des procédures internes, doit respecter un strict principe de proportionnalité sous peine d'être jugée inconstitutionnelle, et que, par ailleurs, un agent public ne peut invoquer le Cinquième Amendement pour refuser de s'identifier dans le cadre d'une procédure judiciaire, cette obligation étant essentielle à la transparence et à la responsabilité des fonctions publiques.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[A-2024-0912] Saisine pour question de droit du 30 septembre 2024</div>
+                <div class="article-content">
+                    La Cour reconnaît que le procureur, en sa qualité de directeur de l'enquête, peut émettre des injonctions contraignantes à l'encontre des agents de police judiciaire dans les strictes limites de leur mission d'enquête, à condition que ces injonctions respectent les principes de procédure et de droit, faute de quoi elles constitueraient une violation du due process ou un abus de pouvoir au sens du Code pénal de l'État du Tennessee.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[A-2024-0911 BIS] Saisine pour question de droit du 20 octobre 2024</div>
+                <div class="article-content">
+                    La Cour reconnaît que la Constitution doit être respectée par toutes les lois, règlements et décisions de justice, et que tout litige à son sujet relève de la compétence exclusive de la Cour Suprême de l'État du Tennessee, tout en rappelant que les limitations aux droits constitutionnels, notamment l'accès à un avocat ou la vérification d'identité, doivent respecter les principes de proportionnalité et de nécessité, et s'inscrire dans un cadre strictement réglementé afin de garantir une application rigoureuse des droits fondamentaux.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[A-P-2024-3007] DISTRICT COURT v. __ __</div>
+                <div class="article-content">
+                    La Cour considère que l'identification d'un adjoint devant un magistrat constitue en principe une obligation légale, dès lors que celui-ci demeure pénalement responsable et justiciable mais, en l'espèce, l'atteinte constitutionnelle constatée fait obstacle à l'opposabilité de cette exigence, privant ainsi son application de toute valeur contraignante et constate l'absence de fondement légal à l'accusation d'outrage formulée à l'encontre de l'appelant et, considérant la violation de ses droits fondamentaux, prononce en conséquence sa relaxe.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[PA-2025-4875] TENNESSEE V. OLSON</div>
+                <div class="article-content">
+                    La Cour considère que la procédure de « booking process » exige la communication des informations personnelles requises, de sorte que la limitations aux seules mentions de base (prénom, nom et adresse) constitue un refus d'identification répréhensible.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[AP-2025-5136] COHEN V. TWENTIETH DISTRICT COURT</div>
+                <div class="article-content">
+                    La Cour identifie deux grands principes relatifs à l'outrage à la Cour. D'abord, la condamnation pour outrage n'exonère jamais le juge de l'obligation de motiver sa décision sur les faits et leur qualification. Ensuite, un test directeur est dégagé : un avocat ne peut être déclaré coupable d'outrage que si (i) un avertissement explicite préalable lui a été donné par la Cour et (ii) il a volontairement cherché à perturber la séance ou à manquer de respect à la juridiction ; à défaut, l'immunité de robe prévaut.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[AP-2025-5136] JESUS COHEN V. TWENTIETH DISTRICT COURT</div>
+                <div class="article-content">
+                    La Cour considère qu'un outrage à la cour commis au cours d'une audience est soumis aux mêmes exigences qu'une décision juridictionnelle ordinaire ; dès lors, la Cour doit faire apparaître les motivations de cet outrage dans la décision prononçant la sanction.
+                </div>
+            </div>
+
+            <h3 style="color: #C8102E; border-bottom: 3px solid #F4E5C3; padding-bottom: 0.5rem; margin-top: 3rem;">COUR DE DISTRICT</h3>
             
-            <h3>COUR DE DISTRICT</h3>
+            <p style="margin: 1.5rem 0; font-style: italic; color: #666;">
+                La jurisprudence de la Cour de District établit des précédents importants pour l'application quotidienne du droit dans le comté.
+            </p>
+
+            <div class="code-article">
+                <div class="article-number">[P-2020-0208] TENNESSEE v. PRICE</div>
+                <div class="article-content">
+                    La Cour reconnaît que le seul fait d'injurier sur la voie publique autrui ne peut être constitutif d'un trouble à l'ordre public après contrôle de proportionnalité entre l'atteinte au 1er Amendement et le maintien de l'ordre public.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2020-0224] TENNESSEE v. LINCOLN</div>
+                <div class="article-content">
+                    La Cour estime qu'il ne saurait être considéré comme utilisation légitime et proportionnée de la force l'officier de police qui abat un individu menotté sous sa surveillance.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[C-2020-0312] BCMC v. BRADFORD</div>
+                <div class="article-content">
+                    La Cour considère qu'il est obligatoire pour un officier dans l'exercice de ses fonctions d'être identifiable et de s'identifier.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[C-2020-0821] BCSD v. BISHOP</div>
+                <div class="article-content">
+                    La Cour considère que la suspension immédiate des fonctions d'un agent est justifiée lorsqu'un doute raisonnable existe quant à la violation de ses obligations contractuelles, déontologiques et d'assermentation.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[C-2020-1011] STEWART v. KYLE</div>
+                <div class="article-content">
+                    La Cour considère qu'un représentant de l'État, indépendamment de son appartenance partisane, doit avoir accès aux informations relevant de son champ de compétence, dans le respect de ses prérogatives et de sa fonction élective, et ne doit pas être entravé dans cet exercice et accès pour des motifs partisans.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[C-2020-1108] SHALL v. BCSD</div>
+                <div class="article-content">
+                    La Cour estime qu'un avocat inscrit au barreau doit être en mesure de démontrer son affiliation au barreau de l'État du Tennessee, en raison de sa fonction protégée par la loi.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2021-0116] TENNESSEE v. ROY</div>
+                <div class="article-content">
+                    La Cour considère qu'un prévenu est coupable de dégradation en entravant l'usage normal de l'espace public et d'occupation illégale du domaine public en exerçant une activité sans autorisation appropriée par l'instance agréée.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[C-2021-0207] WILSTON v. AUGHER</div>
+                <div class="article-content">
+                    La Cour considère qu'une personne se rend coupable de harcèlement lorsqu'elle persiste à exercer une pression, par des messages ou autres moyens, après que la victime ait exprimé son malaise.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2021-0603] TENNESSEE v. MEADORS & LOWRENCE</div>
+                <div class="article-content">
+                    La Cour considère que le trouble à l'ordre public de manière concertée en perturbant les fonctions des officiers de police constitue une prévenance à la circonstance aggravante.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2021-0604] TENNESSEE v. SIMS, SMITH & COLE</div>
+                <div class="article-content">
+                    La Cour précise, en complément de la jurisprudence TENNESSEE v. MEADORS & LOWRENCE, qu'une circonstance aggravante s'applique lorsque des dispositifs incendiaires sont utilisés dans le cadre d'un trouble à l'ordre public.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2021-0712] TENNESSEE v. GEORGE</div>
+                <div class="article-content">
+                    La Cour considère qu'une menace ne peut être raisonnablement qualifiée d'infraction lorsque celle-ci s'inscrit dans le cadre d'une légitime défense, sauf si son usage manifeste un caractère disproportionné au regard des circonstances.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[CI-2021-0010] TENNESSEE v. JENKINS</div>
+                <div class="article-content">
+                    La Cour considère que la doctrine du château (Castle Doctrine) ne peut s'appliquer à un habitat occupé de manière illicite, tel qu'un squat sur la voie publique, celui-ci ne pouvant être reconnu comme une possession légitime et exclu du champ d'application du Quatrième Amendement.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[HABEAS CORPUS] TENNESSEE v. CAMERON & OWENS</div>
+                <div class="article-content">
+                    La Cour considère que l'absence d'identification d'un membre de l'exécutif rend ses actes juridiquement nuls, autorisant ainsi toute personne concernée à s'en défendre précisant que le port d'un uniforme, d'un badge visible ou l'utilisation d'un véhicule clairement identifiable constituent des moyens valides d'identification.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2021-1021] TENNESSEE v. CART</div>
+                <div class="article-content">
+                    La Cour considère que le non-respect des ordonnances judiciaires et la présentation tardive de preuves non communiquées à la partie adverse constituent des manquements graves au principe du contradictoire et à l'autorité des juridictions, justifiant l'imposition de sanctions et la notification aux instances disciplinaires compétentes.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2023-0401] TENNESSEE v. HUSTON (audience préliminaire)</div>
+                <div class="article-content">
+                    La Cour souligne deux principes distincts : d'une part, les éléments constitutifs d'un arrêt de travail valent attestation médicale, à condition qu'ils soient dûment signés par un médecin formellement identifié ; d'autre part, l'identité des officiers de police appelés à témoigner dans une procédure légale ne peut être confidentielle, sauf si sa divulgation met en péril leur sécurité.
+                </div>
+            </div>
+
             <div class="code-article">
                 <div class="article-number">[P-2023-0401] TENNESSEE v. HUSTON</div>
                 <div class="article-content">
-                    L'identité des officiers de police ne peut être confidentielle lors d'une procédure légale, 
-                    sauf si sa divulgation met en péril leur sécurité.
+                    La Cour considère que la seule préparation d'un dispositif incendiaire ne peut être assimilée à une préméditation reconnaissant toutefois que la fabrication d'un dispositif incendiaire spécifiquement conçu dans le but manifeste de commettre un meurtre constitue une préméditation.
                 </div>
             </div>
-            
+
+            <div class="code-article">
+                <div class="article-number">[P-2023-0701] TENNESSEE v. NASHTON</div>
+                <div class="article-content">
+                    La Cour reconnaît que la fonction d'avocat, protégée par la Constitution et les lois de l'État du Tennessee, ne peut être usurpée sous peine de sanctions pénales, et que dans des cas où un prévenu est manifestement trompé par fraude ou escroquerie dans un domaine où il n'a pas les compétences nécessaires, une circonstance atténuante peut être retenue, à condition que la fraude soit établie de manière convaincante.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2023-0703] TENNESSEE v. NORKOV</div>
+                <div class="article-content">
+                    La Cour reconnaît que l'aveu complet d'actes criminels graves, associé à une absence manifeste de remords et à un comportement représentant un danger récurrent pour la communauté, constitue un motif suffisant pour exclure toute possibilité de réinsertion et justifie une peine de mort au regard de la protection de la communauté.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2023-0804] TANAKA v. DCSO</div>
+                <div class="article-content">
+                    La Cour reconnaît que la réalisation d'une fouille requiert une justification fondée sur un doute raisonnable, et qu'en outre aucune entité exécutive n'est habilitée à ordonner une fouille systématique et aléatoire des biens et des individus sans une justification préalable, conformément aux prescriptions du sixième amendement de la Constitution des États-Unis.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2023-1002] TENNESSEE v. SANCHEZ-SALDANA</div>
+                <div class="article-content">
+                    La Cour reconnaît une prévenance spécifique à la circonstance atténuante lorsqu'un prévenu subit des changements significatifs dans son environnement de vie et recommande la réintégration, sous réserve que l'accusé ne présente pas de menace pour la communauté ni pour lui-même.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2023-1102] TENNESSEE v. TYLLER</div>
+                <div class="article-content">
+                    La Cour reconnaît qu'une personne est pénalement responsable tant que sa conscience ou sa responsabilité n'a été légitimement mise en cause par une personne qualifiée et certifiée de cet État.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2023-1003] TENNESSEE v. STUART & TYRONE</div>
+                <div class="article-content">
+                    La Cour reconnait une prévenance spécifique à la circonstances aggravantes lorsqu'un meurtre est commit sur un agent des forces de l'ordre agissant dans l'exercice de ses fonctions.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2024-0204] SLATER v. BELFORT</div>
+                <div class="article-content">
+                    La Cour établit deux principes distincts : d'une part, le représentant du ministère public dispose de l'autorité pour solliciter des sanctions pénales, sous réserve de leur conformité avec le Huitième Amendement ; d'autre part, il revient au magistrat de vérifier cette conformité constitutionnelle en homologuant ces demandes ou en les modifiant si nécessaire.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2023-0902] TENNESSEE v. PARKER</div>
+                <div class="article-content">
+                    La Cour reconnaît qu'un prévenu ne peut être condamné au motif d'un refus de se soumettre à l'injonction d'un officier de police lorsque celui-ci se situe dans son domicile dûment protégé par le Quatrième amendement de la Constitution des États-Unis au-delà de tout doute raisonnable.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2024-0727] TENNESSEE v. LAÏKA</div>
+                <div class="article-content">
+                    La Cour considère que, dans le respect du principe fondamental d'égalité des armes, toute partie doit être informée en temps utile de l'audience et des éléments de preuve produits, et que tout manquement à cette obligation justifie, en l'absence d'annulation du procès, le report de l'audience afin de permettre la préparation adéquate de la défense.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2024-0011] RITWOOL v. MBIZI COHEN</div>
+                <div class="article-content">
+                    La Cour considère qu'en l'absence de preuve d'un contrat signé par les parties ou de l'acceptation explicite des conditions d'un code déontologique, aucun engagement contractuel ou déontologique ne peut être valablement opposé, et que les demandes de motions doivent respecter des contraintes temporelles permettant leur examen équitable.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2024-1001] TENNESSEE v. PAPET</div>
+                <div class="article-content">
+                    La Cour considère que les jours d'interruption temporaire de travail doivent être dûment enregistrés et certifiés par un médecin dûment autorisé à exercer dans l'État, sans égard pour des considérations personnelles, conformément aux principes établis dans la jurisprudence STATE OF TENNESSEE v. HUSTON.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[C-2024-0801] HARRIS v. MABROUK & TENNESSEE STATE NEWS</div>
+                <div class="article-content">
+                    La Cour considère qu'un journal ne peut être tenu pour responsable de fausses déclarations diffamatoires sur la conduite officielle d'un fonctionnaire, sauf en cas d'intention réelle de nuire, tout en rappelant que tout média a l'obligation de vérifier la véracité des informations obtenues de ses sources avant publication, afin d'éviter toute indifférence imprudente à la vérité et d'engager sa responsabilité en cas de diffamation.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[CI-2024-1101] TENNESSEE v. GAMBINO</div>
+                <div class="article-content">
+                    La Cour reconnaît que la négligence manifeste d'un conducteur, qui enfreint les règles de sécurité routière et met en danger la vie d'autrui, constitue un élément suffisant pour établir la responsabilité pénale pour homicide involontaire, même en l'absence d'une intention malveillante.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2024-0912] SHALL & CO v. DCSO</div>
+                <div class="article-content">
+                    La Cour reconnaît qu'un procureur, en raison de son devoir de neutralité et de préservation de l'intérêt public, ne peut assurer la défense d'une personne morale et ou physique dans une procédure pénale, car une telle implication compromettrait les principes fondamentaux d'équité et d'impartialité garantis par le droit à un procès équitable.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[C-P-00004] TENNESSEE v. CAMERON</div>
+                <div class="article-content">
+                    La Cour estime que l'utilisation intentionnelle d'un document falsifié, dans le but de tromper, par un membre de la justice ou de l'exécutif, constitue un acte de faux et d'usage de faux, même si cet acte est motivé par une intention jugée bonne et que la tromperie procédurale, lors d'un interrogatoire, comme une violation constitutionnelle sauf si elle engendre une contrainte ou affecte la nature volontaire des aveux.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[C-P-2024-0030] TENNESSEE v. DCSO (référé)</div>
+                <div class="article-content">
+                    La Cour considère que la coopération active entre le Bureau du Procureur et le département du Shérif est une obligation essentielle au respect des droits constitutionnels garantis par la Constitution, imposant la communication des documents nécessaires à l'administration de la justice, l'accès aux locaux sous conditions de sécurité raisonnables, et la supervision des enquêtes urgentes par le Procureur, tout en autorisant des restrictions strictement encadrées à l'utilisation des infrastructures ou des ressources partagées.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[C-P-2024-0035] TENNESSEE v. CARTER</div>
+                <div class="article-content">
+                    La Cour considère que les preuves obtenues lors d'une perquisition sans mandat ni identification des agents sont irrecevables, et estime qu'un individu agissant en légitime défense de son domicile est exonéré de toute responsabilité pour mise en danger de la vie d'autrui, en vertu de la doctrine du château (Doctrine Castel).
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[C-P-2024-0035] TENNESSEE v. WEST</div>
+                <div class="article-content">
+                    La Cour considère qu'il ne peut être refusé l'accès à un bâtiment public d'un département d'application de la loi à un membre du Bureau du Procureur dans l'exercice de ses fonctions.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[HABEAS CORPUS] TENNESSEE v. BEYCKERS</div>
+                <div class="article-content">
+                    La Cour considère qu'une erreur mineure sur une pièce de procédure effectuée et exécutée de bonne foi par un département d'application de la loi et n'impactant pas la procédure ou les droits constitutionnels des parties ne constitue pas un vice de procédure. Il convient de prendre en compte l'exception de bonne foi dès lors que les adjoints n'ont pas agi de manière négligente ou intentionnellement illégale.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[C-2025-2401] WANG V. TENNESSEE</div>
+                <div class="article-content">
+                    La Cour considère que les comptes de réseaux sociaux gérés par des entités publiques peuvent être qualifiés de « forum publics » dès lors qu'ils permettent et encouragent l'interaction entre le gouvernement et les citoyens. Un tel forum, bien que numérique, est soumis aux garanties constitutionnelles du Premier amendement : les restrictions et discriminations sur la base du point de vue sont interdites.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[C-2024-0028] WEST v. JACOBS</div>
+                <div class="article-content">
+                    La Cour considère qu'un juge dans l'exercice de ses fonctions et en sa qualité de juge ne peut se voir poursuivre pour des décisions prises dans l'exercice de ses fonctions ou le rendu de la justice et ce, même si en exerçant son autorité dans une procédure judiciaire en sa qualité de juge ce dernier a pu commettre des erreurs ou une mauvaise interprétation du droit, celui-ci ne pourrait se voir poursuivie.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[OUTRAGE] TWENTIETH'S JUDICIAL CIRCUIT OF TENNESSEE V. WELLS</div>
+                <div class="article-content">
+                    La Cour considère que la certification officielle du compte d'un juge constitue une extension de ses fonctions juridictionnelles et qu'ainsi, toute offense proférée à son encontre sur ce compte est assimilable à un outrage à magistrat et relève du délit d'outrage à la Cour.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[HABEAS CORPUS] TENNESSEE v. BENNETT</div>
+                <div class="article-content">
+                    La Cour considère que durant un contrôle d'identité dûment motivé par une cause probable la force publique à le droit de recourir à la contrainte et l'entrave dans le cadre strict de proportionnalité et de manière raisonnable. La Force publique doit prouver la nécessité de cette entrave dans un cadre sécuritaire. La Cour considère que la présence hostile d'une foule à l'action de la force publique autorise cette dernière à prendre des mesures de sécurité temporaire pour garantir la sécurité de tous les participants d'un contrôle [...] y compris le déplacement de la personne contrôlée à la station du shérif le temps strictement nécessaire à son contrôle d'identité.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[HABEAS CORPUS] TENNESSEE v. SKULL</div>
+                <div class="article-content">
+                    La Cour considère que, une fouille réalisée avant la notification des droits, dans un contexte tendu, n'entache pas la régularité de la procédure si la notification intervient dans un délai légal à compter d'un contrôle d'identité effectif, conformément à la jurisprudence Miranda v. Arizona et à l'article 222-2 du Code pénal. La citation de ces droits doit intervenir avant tout interrogatoire.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[P-2025-1204] TENNESSEE JUDICIARY COURT v. LANGFORD & KENSINGTON</div>
+                <div class="article-content">
+                    La Cour considère que, des propos insultant tenus l'égard des institutions judiciaires de l'État constituent un outrage à la justice dès lors qu'ils sont tenus sur une plateforme télévisée. La Cour rappelle néanmoins le caractère fondamental de la liberté d'expression tout en affirmant qu'elle ne peut être utilisé légitimement pour discréditer la Cour.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[CI-2025-0158] TENNESSEE v. BRADFORD</div>
+                <div class="article-content">
+                    La Cour considère que la non communication du dossier de preuves à la partie adverse constitue une violation du principe du contradictoire, entraînant par conséquent la nullité de la procédure.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[HABEAS CORPUS] TENNESSEE v. DANTE</div>
+                <div class="article-content">
+                    La Cour considère que des violences physiques subies durant une garde à vue sont de nature à porter atteinte à la dignité et aux droits constitutionnels de la personne détenue motivant l'annulation de sa garde à vue.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[HABEAS CORPUS] TENNESSEE v. ILLESCAS</div>
+                <div class="article-content">
+                    La Cour rappelle le droit fondamental à une défense effective, affirmant que l'avocat d'une personne placée en garde à vue doit avoir accès aux informations essentielles de la procédure, notamment les faits reprochés, la cause probable du placement, l'avis de garde à vue et l'identité de l'officier en charge. Par ailleurs, elle précise que le ministère public est tenu de transmettre le dossier d'accusation dans un délai raisonnable dès l'inculpation, garantissant ainsi le respect des droits de la défense et le principe du procès équitable.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[C-2026-3265] In re K9 Sniff, 20th District, 2026</div>
+                <div class="article-content">
+                    La Cour considère que le reniflement d'une personne par un chien de détection constitue une fouille lorsqu'il est précédé ou accompagné d'une immobilisation physique, même brève, de la personne. Une telle mesure ne peut être légalement mise en œuvre qu'en présence d'un doute raisonnable préalable et dans le respect des principes de nécessité et de proportionnalité. En revanche, un reniflement strictement fortuit, sans immobilisation ni ciblage, lorsque le chien marque spontanément en passant à proximité, ne constitue pas en lui-même une fouille.
+                </div>
+            </div>
+
+            <div class="code-article">
+                <div class="article-number">[HC-2025-349012] MARLON M. HOBSON V. STATE OF TENNESSEE</div>
+                <div class="article-content">
+                    La Cour considère que la garde à vue est un acte d'enquête fondé sur une suspicion raisonnable et proportionnée au but poursuivi par l'enquête. Elle ne met donc pas en œuvre le principe de non bis in idem. Enfin, les charges décrites dans un rapport de police ne relèvent pas du pouvoir discrétionnaire du Bureau du Procureur d'apprécier l'opportunité des poursuites et, de ce fait, ne sauraient avoir d'effet incriminant.
+                </div>
+            </div>
+
             <p style="margin-top: 2rem; font-style: italic; color: #666;">
-                Consultez le répertoire complet pour toutes les jurisprudences.
+                Ce répertoire constitue une compilation des décisions juridictionnelles majeures des trois niveaux de juridiction du Tennessee.
+                Pour toute question d'interprétation, référez-vous aux décisions originales complètes.
             </p>
         `
     }

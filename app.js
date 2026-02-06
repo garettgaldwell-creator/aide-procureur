@@ -322,7 +322,18 @@ function checkCRPCEligibility(infractions) {
 }
 
 function displayResults(prison, rp, fines, category, crpcEligible) {
-    document.getElementById('prison-time').textContent = `${prison} ans`;
+    // Afficher en mois si moins de 1 an
+    let prisonDisplay = '';
+    if (prison < 1 && prison > 0) {
+        const months = Math.round(prison * 12);
+        prisonDisplay = `${months} mois`;
+    } else if (prison === 0) {
+        prisonDisplay = '0 ans';
+    } else {
+        prisonDisplay = `${prison} ans`;
+    }
+    
+    document.getElementById('prison-time').textContent = prisonDisplay;
     document.getElementById('prison-rp').textContent = `(${rp} minutes RP)`;
     document.getElementById('fines').textContent = `${fines.toLocaleString()} $`;
     document.getElementById('category').textContent = category;
@@ -333,13 +344,24 @@ function displayResults(prison, rp, fines, category, crpcEligible) {
         const crpcRP = convertToRP(crpcPrison);
         const crpcFines = Math.round(fines * 0.5);
         
+        // Afficher CRPC en mois si moins de 1 an
+        let crpcPrisonDisplay = '';
+        if (crpcPrison < 1 && crpcPrison > 0) {
+            const crpcMonths = Math.round(crpcPrison * 12);
+            crpcPrisonDisplay = `${crpcMonths} mois`;
+        } else if (crpcPrison === 0) {
+            crpcPrisonDisplay = '';
+        } else {
+            crpcPrisonDisplay = `${crpcPrison} ans`;
+        }
+        
         // Si pas de peine de prison, afficher seulement l'amende réduite
         if (prison === 0) {
             document.getElementById('crpc-prison').textContent = `Amende réduite : ${crpcFines.toLocaleString()} $`;
             document.getElementById('crpc-rp').textContent = ``;
         } else {
             // Sinon afficher prison ET amende réduites
-            document.getElementById('crpc-prison').textContent = `${crpcPrison} ans • ${crpcFines.toLocaleString()} $`;
+            document.getElementById('crpc-prison').textContent = `${crpcPrisonDisplay} • ${crpcFines.toLocaleString()} $`;
             document.getElementById('crpc-rp').textContent = `(${crpcRP} minutes RP)`;
         }
         
@@ -469,7 +491,7 @@ function exportToPDF() {
     }
     
     // Récupérer les résultats actuels (seulement les années, pas les minutes RP)
-    const prisonText = document.getElementById('prison-time').textContent; // "X ans"
+    const prisonText = document.getElementById('prison-time').textContent; // "X ans" ou "X mois"
     const fines = document.getElementById('fines').textContent;
     const category = document.getElementById('category').textContent;
     

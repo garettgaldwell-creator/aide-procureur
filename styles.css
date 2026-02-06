@@ -419,6 +419,8 @@ body {
     text-align: center;
     box-shadow: var(--shadow-md);
     border: 2px solid var(--gold);
+    min-width: 220px;
+    flex: 1;
 }
 
 .result-label {
