@@ -24,7 +24,7 @@ Système complet de gestion des réquisitions pour le Bureau du Procureur dans u
 - Accélérer la prise de décision
 - Former les nouveaux procureurs
 
----
+----
 
 ## ✨ FONCTIONNALITÉS
 
