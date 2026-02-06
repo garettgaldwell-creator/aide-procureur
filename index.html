@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bureau du Procureur - État du Tennessee</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="logo.png" alt="Office of the Attorney General - State of Tennessee" class="logo">
+                <div class="header-text">
+                    <h1>Office of the Attorney General</h1>
+                    <p class="subtitle">State of Tennessee</p>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <button class="nav-btn active" data-module="simulator">
+                    <span class="icon">⚖️</span>
+                    Simulateur de peines
+                </button>
+                <button class="nav-btn" data-module="codes">
+                    <span class="icon">📚</span>
+                    Base juridique
+                </button>
+                <button class="nav-btn" data-module="procedures">
+                    <span class="icon">📋</span>
+                    Procédures
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- MODULE 1: SIMULATEUR DE PEINES -->
+        <section id="simulator" class="module active">
+            <div class="module-header">
+                <h2>Simulateur de peines et d'infractions</h2>
+                <p>Sélectionnez les infractions reprochées pour calculer automatiquement les réquisitions</p>
+            </div>
+
+            <div class="simulator-container">
+                <!-- Sidebar: Sélection des infractions -->
+                <div class="infractions-panel">
+                    <div class="panel-header">
+                        <h3>Infractions</h3>
+                        <input type="text" id="search-infractions" placeholder="🔍 Rechercher une infraction..." class="search-input">
+                    </div>
+                    
+                    <div class="infractions-categories" id="infractions-list">
+                        <!-- Généré dynamiquement par JS -->
+                    </div>
+                </div>
+
+                <!-- Main: Calculs et résultats -->
+                <div class="results-panel">
+                    <div class="selected-infractions" id="selected-infractions">
+                        <h3>Infractions retenues</h3>
+                        <div id="selected-list" class="infraction-tags">
+                            <p class="empty-state">Aucune infraction sélectionnée</p>
+                        </div>
+                    </div>
+
+                    <!-- Modificateurs -->
+                    <div class="modifiers-section">
+                        <h3>Modificateurs de peine</h3>
+                        <div class="modifiers-grid">
+                            <label class="modifier-checkbox">
+                                <input type="checkbox" id="recidive-1">
+                                <span>Récidive (1ère) - ×2</span>
+                            </label>
+                            <label class="modifier-checkbox">
+                                <input type="checkbox" id="recidive-2">
+                                <span>Récidive (2ème) - ×3</span>
+                            </label>
+                            <label class="modifier-checkbox">
+                                <input type="checkbox" id="mineur">
+                                <span>Mineur (< 21 ans) - ÷2</span>
+                            </label>
+                            <label class="modifier-checkbox">
+                                <input type="checkbox" id="cooperation">
+                                <span>Coopération - 25%</span>
+                            </label>
+                            <label class="modifier-checkbox">
+                                <input type="checkbox" id="aveux">
+                                <span>Aveux complets - 15%</span>
+                            </label>
+                            <label class="modifier-checkbox">
+                                <input type="checkbox" id="trouble-psy">
+                                <span>Trouble psychique - 33%</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Résultats -->
+                    <div class="calculation-results">
+                        <h3>Réquisitions calculées</h3>
+                        
+                        <div class="results-grid">
+                            <div class="result-card">
+                                <div class="result-label">Temps de prison</div>
+                                <div class="result-value" id="prison-time">0 ans</div>
+                                <div class="result-rp" id="prison-rp">(0 minutes RP)</div>
+                            </div>
+
+                            <div class="result-card">
+                                <div class="result-label">Amendes</div>
+                                <div class="result-value" id="fines">0 $</div>
+                            </div>
+
+                            <div class="result-card">
+                                <div class="result-label">Catégorie</div>
+                                <div class="result-value" id="category">-</div>
+                            </div>
+
+                            <div class="result-card crpc-card" id="crpc-card" style="display: none;">
+                                <div class="result-label">CRPC Possible ✓</div>
+                                <div class="result-value" id="crpc-prison">0 ans</div>
+                                <div class="result-rp" id="crpc-rp">(0 minutes RP)</div>
+                                <div class="crpc-note">Réduction maximale de 50%</div>
+                            </div>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="btn-primary" id="export-pdf">
+                                📄 Exporter les réquisitions
+                            </button>
+                            <button class="btn-secondary" id="reset-all">
+                                🔄 Réinitialiser
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 2: BASE JURIDIQUE -->
+        <section id="codes" class="module">
+            <div class="module-header">
+                <h2>Base juridique interactive</h2>
+                <p>Consultation des codes et articles de loi</p>
+            </div>
+
+            <div class="codes-container">
+                <div class="codes-sidebar">
+                    <h3>Codes disponibles</h3>
+                    <nav class="codes-nav">
+                        <button class="code-btn active" data-code="penal">Code Pénal</button>
+                        <button class="code-btn" data-code="procedure-penale">Code de Procédure Pénale</button>
+                        <button class="code-btn" data-code="civil">Code Civil</button>
+                        <button class="code-btn" data-code="procedure-civile">Code de Procédure Civile</button>
+                        <button class="code-btn" data-code="commerce">Code du Commerce</button>
+                        <button class="code-btn" data-code="route">Code de la Route</button>
+                        <button class="code-btn" data-code="constitution">Constitution du Tennessee</button>
+                        <button class="code-btn" data-code="jurisprudence">Jurisprudence</button>
+                    </nav>
+                </div>
+
+                <div class="codes-content">
+                    <div class="codes-search">
+                        <input type="text" id="search-codes" placeholder="🔍 Rechercher un article, mot-clé..." class="search-input">
+                    </div>
+                    <div id="code-display" class="code-display">
+                        <!-- Contenu du code sélectionné -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 3: PROCÉDURES -->
+        <section id="procedures" class="module">
+            <div class="module-header">
+                <h2>Fiches procédurales</h2>
+                <p>Guides et checklists pour les procédures courantes</p>
+            </div>
+
+            <div class="procedures-grid">
+                <div class="procedure-card" data-procedure="gav">
+                    <h3>👮 Garde à vue</h3>
+                    <p>Durée, droits, notifications</p>
+                </div>
+                <div class="procedure-card" data-procedure="perquisition">
+                    <h3>🔍 Perquisition</h3>
+                    <p>Mandats, conditions, exécution</p>
+                </div>
+                <div class="procedure-card" data-procedure="mandat">
+                    <h3>📜 Mandats</h3>
+                    <p>Arrestation, perquisition, types</p>
+                </div>
+                <div class="procedure-card" data-procedure="audience">
+                    <h3>⚖️ Audiences</h3>
+                    <p>Comparution, procès, appel</p>
+                </div>
+                <div class="procedure-card" data-procedure="crpc">
+                    <h3>🤝 CRPC</h3>
+                    <p>Plaider-coupable, conditions</p>
+                </div>
+                <div class="procedure-card" data-procedure="miranda">
+                    <h3>📢 Droits Miranda</h3>
+                    <p>Notification, texte légal</p>
+                </div>
+            </div>
+
+            <div id="procedure-detail" class="procedure-detail" style="display: none;">
+                <!-- Contenu de la procédure sélectionnée -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <p>Office of the Attorney General - State of Tennessee | Système de gestion des réquisitions v1.0</p>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
