@@ -274,8 +274,15 @@ function displayResults(prison, rp, fines, category, crpcEligible) {
         const crpcRP = convertToRP(crpcPrison);
         const crpcFines = Math.round(fines * 0.5);
         
-        document.getElementById('crpc-prison').textContent = `${crpcPrison} ans`;
-        document.getElementById('crpc-rp').textContent = `(${crpcRP} minutes RP)`;
+        // Si pas de peine de prison, afficher seulement l'amende réduite
+        if (prison === 0) {
+            document.getElementById('crpc-prison').textContent = `Amende réduite : ${crpcFines.toLocaleString()} $`;
+            document.getElementById('crpc-rp').textContent = ``;
+        } else {
+            // Sinon afficher prison ET amende réduites
+            document.getElementById('crpc-prison').textContent = `${crpcPrison} ans • ${crpcFines.toLocaleString()} $`;
+            document.getElementById('crpc-rp').textContent = `(${crpcRP} minutes RP)`;
+        }
         
         crpcCard.style.display = 'block';
     } else {
@@ -408,63 +415,237 @@ function exportToPDF() {
     const fines = document.getElementById('fines').textContent;
     const category = document.getElementById('category').textContent;
     
-    // Créer le contenu du rapport
-    let report = '═══════════════════════════════════════════════\n';
-    report += '   OFFICE OF THE ATTORNEY GENERAL\n';
-    report += '        STATE OF TENNESSEE\n';
-    report += '   RAPPORT DE RÉQUISITIONS\n';
-    report += '═══════════════════════════════════════════════\n\n';
+    // Initialiser jsPDF
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
     
-    report += `Date: ${new Date().toLocaleDateString('fr-FR')}\n`;
-    report += `Heure: ${new Date().toLocaleTimeString('fr-FR')}\n\n`;
+    // Configuration
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 20;
+    let yPos = 20;
     
-    report += '━━━ INFRACTIONS RETENUES ━━━\n\n';
+    // === EN-TÊTE ===
+    doc.setFillColor(200, 16, 46); // Rouge du logo
+    doc.rect(0, 0, pageWidth, 40, 'F');
+    
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(20);
+    doc.setFont(undefined, 'bold');
+    doc.text('BUREAU DU PROCUREUR', pageWidth / 2, 15, { align: 'center' });
+    
+    doc.setFontSize(12);
+    doc.setFont(undefined, 'normal');
+    doc.text('Davidson County - Tennessee', pageWidth / 2, 25, { align: 'center' });
+    doc.text('RAPPORT DE RÉQUISITIONS', pageWidth / 2, 32, { align: 'center' });
+    
+    yPos = 50;
+    
+    // === INFORMATIONS GÉNÉRALES ===
+    doc.setTextColor(0, 40, 104);
+    doc.setFontSize(10);
+    doc.setFont(undefined, 'normal');
+    
+    const today = new Date();
+    doc.text(`Date: ${today.toLocaleDateString('fr-FR')}`, margin, yPos);
+    doc.text(`Heure: ${today.toLocaleTimeString('fr-FR')}`, pageWidth - margin - 40, yPos);
+    
+    yPos += 15;
+    
+    // === SECTION INFRACTIONS ===
+    doc.setDrawColor(200, 16, 46);
+    doc.setLineWidth(0.5);
+    doc.line(margin, yPos, pageWidth - margin, yPos);
+    yPos += 7;
+    
+    doc.setFontSize(14);
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(200, 16, 46);
+    doc.text('INFRACTIONS RETENUES', margin, yPos);
+    
+    yPos += 10;
+    doc.setFontSize(10);
+    doc.setTextColor(0, 0, 0);
+    doc.setFont(undefined, 'normal');
+    
     state.selectedInfractions.forEach((inf, index) => {
-        report += `${index + 1}. ${inf.name}\n`;
-        report += `   ${inf.article} - ${inf.category}\n`;
-        report += `   Peine de base: ${inf.prison} ans • ${inf.amende.toLocaleString()} $\n\n`;
+        // Vérifier si on doit ajouter une nouvelle page
+        if (yPos > pageHeight - 40) {
+            doc.addPage();
+            yPos = 20;
+        }
+        
+        doc.setFont(undefined, 'bold');
+        doc.text(`${index + 1}. ${inf.name}`, margin + 5, yPos);
+        yPos += 5;
+        
+        doc.setFont(undefined, 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(100, 100, 100);
+        doc.text(`${inf.article} - ${inf.category}`, margin + 10, yPos);
+        yPos += 4;
+        doc.text(`Peine de base: ${inf.prison} ans • ${inf.amende.toLocaleString()} $`, margin + 10, yPos);
+        
+        yPos += 8;
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 0);
     });
     
-    report += '━━━ MODIFICATEURS APPLIQUÉS ━━━\n\n';
-    if (state.modifiers.recidive1) report += '✓ Récidive (1ère) - Peine doublée\n';
-    if (state.modifiers.recidive2) report += '✓ Récidive (2ème) - Peine triplée\n';
-    if (state.modifiers.mineur) report += '✓ Mineur (< 21 ans) - Peine divisée par 2\n';
-    if (state.modifiers.cooperation) report += '✓ Coopération avec la justice - 25%\n';
-    if (state.modifiers.aveux) report += '✓ Aveux complets - 15%\n';
-    if (state.modifiers.troublePsy) report += '✓ Trouble psychique - 33%\n';
-    if (!Object.values(state.modifiers).some(v => v)) report += 'Aucun modificateur appliqué\n';
+    yPos += 5;
     
-    report += '\n━━━ RÉQUISITIONS FINALES ━━━\n\n';
-    report += `Catégorie: ${category}\n`;
-    report += `Emprisonnement: ${prison} ${rp}\n`;
-    report += `Amendes: ${fines}\n\n`;
-    
-    // Vérifier CRPC
-    const crpcCard = document.getElementById('crpc-card');
-    if (crpcCard.style.display !== 'none') {
-        const crpcPrison = document.getElementById('crpc-prison').textContent;
-        const crpcRP = document.getElementById('crpc-rp').textContent;
-        report += '━━━ CRPC POSSIBLE ━━━\n\n';
-        report += `En cas de plaider-coupable (réduction de 50%):\n`;
-        report += `Emprisonnement réduit: ${crpcPrison} ${crpcRP}\n`;
-        report += `Amendes réduites: ${Math.round(parseInt(fines.replace(/\s/g, '').replace('$', '')) * 0.5).toLocaleString()} $\n\n`;
+    // === SECTION MODIFICATEURS ===
+    if (yPos > pageHeight - 60) {
+        doc.addPage();
+        yPos = 20;
     }
     
-    report += '═══════════════════════════════════════════════\n';
-    report += 'Procureur: _______________________________\n';
-    report += 'Signature: _______________________________\n';
-    report += '═══════════════════════════════════════════════\n';
+    doc.setDrawColor(200, 16, 46);
+    doc.line(margin, yPos, pageWidth - margin, yPos);
+    yPos += 7;
     
-    // Télécharger le fichier
-    const blob = new Blob([report], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `requisitions_${Date.now()}.txt`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    doc.setFontSize(14);
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(200, 16, 46);
+    doc.text('MODIFICATEURS APPLIQUÉS', margin, yPos);
+    
+    yPos += 10;
+    doc.setFontSize(10);
+    doc.setTextColor(0, 0, 0);
+    doc.setFont(undefined, 'normal');
+    
+    let hasModifiers = false;
+    if (state.modifiers.recidive1) {
+        doc.text('✓ Récidive (1ère) - Peine doublée', margin + 5, yPos);
+        yPos += 6;
+        hasModifiers = true;
+    }
+    if (state.modifiers.recidive2) {
+        doc.text('✓ Récidive (2ème) - Peine triplée', margin + 5, yPos);
+        yPos += 6;
+        hasModifiers = true;
+    }
+    if (state.modifiers.mineur) {
+        doc.text('✓ Mineur (< 21 ans) - Peine divisée par 2', margin + 5, yPos);
+        yPos += 6;
+        hasModifiers = true;
+    }
+    if (state.modifiers.cooperation) {
+        doc.text('✓ Coopération avec la justice - Réduction de 25%', margin + 5, yPos);
+        yPos += 6;
+        hasModifiers = true;
+    }
+    if (state.modifiers.aveux) {
+        doc.text('✓ Aveux complets - Réduction de 15%', margin + 5, yPos);
+        yPos += 6;
+        hasModifiers = true;
+    }
+    if (state.modifiers.troublePsy) {
+        doc.text('✓ Trouble psychique - Réduction de 33%', margin + 5, yPos);
+        yPos += 6;
+        hasModifiers = true;
+    }
+    
+    if (!hasModifiers) {
+        doc.setTextColor(100, 100, 100);
+        doc.setFont(undefined, 'italic');
+        doc.text('Aucun modificateur appliqué', margin + 5, yPos);
+        yPos += 6;
+        doc.setFont(undefined, 'normal');
+        doc.setTextColor(0, 0, 0);
+    }
+    
+    yPos += 5;
+    
+    // === SECTION RÉQUISITIONS FINALES ===
+    if (yPos > pageHeight - 70) {
+        doc.addPage();
+        yPos = 20;
+    }
+    
+    doc.setDrawColor(200, 16, 46);
+    doc.line(margin, yPos, pageWidth - margin, yPos);
+    yPos += 7;
+    
+    doc.setFontSize(14);
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(200, 16, 46);
+    doc.text('RÉQUISITIONS FINALES', margin, yPos);
+    
+    yPos += 12;
+    
+    // Cadre pour les réquisitions
+    doc.setFillColor(245, 245, 245);
+    doc.roundedRect(margin, yPos - 5, pageWidth - 2 * margin, 35, 3, 3, 'F');
+    
+    doc.setFontSize(11);
+    doc.setTextColor(0, 40, 104);
+    doc.setFont(undefined, 'bold');
+    
+    doc.text(`Catégorie: ${category}`, margin + 5, yPos + 3);
+    yPos += 10;
+    doc.text(`Emprisonnement: ${prison} ${rp}`, margin + 5, yPos);
+    yPos += 10;
+    doc.text(`Amendes: ${fines}`, margin + 5, yPos);
+    
+    yPos += 15;
+    
+    // === SECTION CRPC (si applicable) ===
+    const crpcCard = document.getElementById('crpc-card');
+    if (crpcCard.style.display !== 'none') {
+        if (yPos > pageHeight - 50) {
+            doc.addPage();
+            yPos = 20;
+        }
+        
+        yPos += 5;
+        doc.setDrawColor(40, 167, 69);
+        doc.setLineWidth(0.5);
+        doc.line(margin, yPos, pageWidth - margin, yPos);
+        yPos += 7;
+        
+        doc.setFontSize(14);
+        doc.setFont(undefined, 'bold');
+        doc.setTextColor(40, 167, 69);
+        doc.text('CRPC POSSIBLE (Plaider-coupable)', margin, yPos);
+        
+        yPos += 10;
+        doc.setFillColor(232, 245, 233);
+        doc.roundedRect(margin, yPos - 5, pageWidth - 2 * margin, 20, 3, 3, 'F');
+        
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 0);
+        doc.setFont(undefined, 'normal');
+        doc.text('En cas de reconnaissance de culpabilité (réduction de 50%):', margin + 5, yPos + 2);
+        
+        yPos += 8;
+        doc.setFont(undefined, 'bold');
+        const crpcPrisonText = document.getElementById('crpc-prison').textContent;
+        const crpcRPText = document.getElementById('crpc-rp').textContent;
+        doc.text(`${crpcPrisonText} ${crpcRPText}`, margin + 5, yPos);
+        
+        yPos += 10;
+    }
+    
+    // === SIGNATURE ===
+    yPos = pageHeight - 40;
+    doc.setDrawColor(0, 0, 0);
+    doc.setLineWidth(0.3);
+    doc.line(margin, yPos, margin + 80, yPos);
+    doc.line(pageWidth - margin - 80, yPos, pageWidth - margin, yPos);
+    
+    doc.setFontSize(9);
+    doc.setTextColor(0, 0, 0);
+    doc.setFont(undefined, 'normal');
+    doc.text('Procureur', margin + 20, yPos + 6);
+    doc.text('Signature', pageWidth - margin - 60, yPos + 6);
+    
+    // === BAS DE PAGE ===
+    doc.setFontSize(8);
+    doc.setTextColor(150, 150, 150);
+    doc.text('Bureau du Procureur - Davidson County, Tennessee', pageWidth / 2, pageHeight - 10, { align: 'center' });
+    
+    // Télécharger le PDF
+    doc.save(`requisitions_${Date.now()}.pdf`);
 }
 
 // === MODULE CODES ===
@@ -492,13 +673,18 @@ function initCodesModule() {
 }
 
 function displayCode(codeType, container) {
-    container.innerHTML = '<h2>Code sélectionné</h2>';
+    const codeData = CODES_CONTENT[codeType];
     
-    if (codeType === 'penal') {
-        container.innerHTML = '<h2>📕 Code Pénal du Tennessee</h2>';
-        container.innerHTML += '<p style="margin-bottom: 2rem; color: #666;">Consultez les articles du Code Pénal ci-dessous. Toutes les infractions listées dans le simulateur proviennent de ce code.</p>';
-        
-        Object.entries(CODE_PENAL).forEach(([category, infractions]) => {
+    if (!codeData) {
+        container.innerHTML = '<h2>Code non disponible</h2>';
+        return;
+    }
+    
+    container.innerHTML = `<h2>📚 ${codeData.title}</h2>`;
+    
+    // Si le code a des sections structurées (CODE_PENAL, CODE_ROUTE)
+    if (codeData.sections) {
+        Object.entries(codeData.sections).forEach(([category, items]) => {
             const section = document.createElement('div');
             section.style.marginBottom = '2rem';
             
@@ -507,36 +693,67 @@ function displayCode(codeType, container) {
             title.style.borderBottom = '2px solid #F4E5C3';
             title.style.paddingBottom = '0.5rem';
             title.style.marginBottom = '1rem';
-            title.textContent = formatCategoryName(category);
+            title.textContent = formatCategoryNameForCode(category, codeType);
             section.appendChild(title);
             
-            infractions.forEach(inf => {
+            items.forEach(item => {
                 const article = document.createElement('div');
                 article.className = 'code-article';
-                article.innerHTML = `
-                    <div class="article-number">${inf.article}</div>
-                    <div class="article-title">${inf.name}</div>
+                
+                let content = `
+                    <div class="article-number">${item.article}</div>
+                    <div class="article-title">${item.name}</div>
                     <div class="article-content">
-                        <strong>Description:</strong> ${inf.description}<br>
-                        <strong>Peine:</strong> ${inf.prison} ans d'emprisonnement (${convertToRP(inf.prison)} minutes RP)<br>
-                        <strong>Amende:</strong> ${inf.amende.toLocaleString()} $<br>
-                        <strong>Catégorie:</strong> ${inf.category}
-                    </div>
                 `;
+                
+                if (item.description) {
+                    content += `<strong>Description:</strong> ${item.description}<br>`;
+                }
+                
+                if (item.prison !== undefined) {
+                    content += `<strong>Peine:</strong> ${item.prison} ans d'emprisonnement (${convertToRP(item.prison)} minutes RP)<br>`;
+                }
+                
+                if (item.amende) {
+                    content += `<strong>Amende:</strong> ${item.amende.toLocaleString()} $<br>`;
+                }
+                
+                content += `<strong>Catégorie:</strong> ${item.category}`;
+                content += `</div>`;
+                
+                article.innerHTML = content;
                 section.appendChild(article);
             });
             
             container.appendChild(section);
         });
-    } else {
-        container.innerHTML = `
-            <h2>📚 ${getCodeTitle(codeType)}</h2>
-            <p style="color: #666; font-style: italic;">
-                Contenu complet du code disponible dans la documentation officielle.<br>
-                Référez-vous aux documents fournis pour les articles détaillés.
-            </p>
-        `;
+    } 
+    // Sinon afficher le contenu HTML brut
+    else if (codeData.content) {
+        const contentDiv = document.createElement('div');
+        contentDiv.innerHTML = codeData.content;
+        container.appendChild(contentDiv);
     }
+}
+
+function formatCategoryNameForCode(key, codeType) {
+    if (codeType === 'penal') {
+        return formatCategoryName(key);
+    }
+    
+    if (codeType === 'route') {
+        const names = {
+            'PREMIERE_CLASSE': '📋 Contraventions de 1ère classe',
+            'DEUXIEME_CLASSE': '📋 Contraventions de 2ème classe',
+            'TROISIEME_CLASSE': '📋 Contraventions de 3ème classe',
+            'QUATRIEME_CLASSE': '📋 Contraventions de 4ème classe',
+            'CINQUIEME_CLASSE': '📋 Contraventions de 5ème classe',
+            'DELITS_ROUTIERS': '🚨 Délits routiers'
+        };
+        return names[key] || key;
+    }
+    
+    return key;
 }
 
 function getCodeTitle(codeType) {

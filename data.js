@@ -1072,3 +1072,561 @@ const CODE_PENAL = {
         }
     ]
 };
+
+// ============================================
+// CODE DE LA ROUTE DU TENNESSEE
+// ============================================
+
+const CODE_ROUTE = {
+    "PREMIERE_CLASSE": [
+        {
+            id: "210-1",
+            name: "Stationnement interdit",
+            article: "Art. 210-1",
+            amende: 540,
+            category: "Contravention 1ère classe"
+        },
+        {
+            id: "210-2",
+            name: "Non présentation immédiate de documents",
+            article: "Art. 210-2",
+            amende: 540,
+            category: "Contravention 1ère classe"
+        },
+        {
+            id: "210-3",
+            name: "Traversée illégale",
+            article: "Art. 210-3",
+            amende: 50,
+            category: "Contravention 1ère classe"
+        },
+        {
+            id: "210-4",
+            name: "Détention du gilet à haute visibilité",
+            article: "Art. 210-4",
+            amende: 200,
+            category: "Contravention 1ère classe"
+        }
+    ],
+    
+    "DEUXIEME_CLASSE": [
+        {
+            id: "310-1",
+            name: "Défaut de feux adéquats",
+            article: "Art. 310-1",
+            amende: 540,
+            category: "Contravention 2ème classe"
+        },
+        {
+            id: "310-2",
+            name: "Défaut de feux de détresse",
+            article: "Art. 310-2",
+            amende: 540,
+            category: "Contravention 2ème classe"
+        },
+        {
+            id: "310-3",
+            name: "Usage abusif du klaxon",
+            article: "Art. 310-3",
+            amende: 540,
+            category: "Contravention 2ème classe"
+        },
+        {
+            id: "310-4",
+            name: "Défaut d'usage de clignotants",
+            article: "Art. 310-4",
+            amende: 540,
+            category: "Contravention 2ème classe"
+        }
+    ],
+    
+    "TROISIEME_CLASSE": [
+        {
+            id: "410-1",
+            name: "Défaut de plaque d'immatriculation",
+            article: "Art. 410-1",
+            amende: 540,
+            category: "Contravention 3ème classe"
+        },
+        {
+            id: "410-2",
+            name: "Excès de vitesse (2 à 9 mph)",
+            article: "Art. 410-2",
+            amende: 420,
+            category: "Contravention 3ème classe"
+        },
+        {
+            id: "410-2b",
+            name: "Excès de vitesse (9 à 19 mph)",
+            article: "Art. 410-2",
+            amende: 600,
+            category: "Contravention 3ème classe"
+        },
+        {
+            id: "410-3",
+            name: "Niveau de transparence des vitres",
+            article: "Art. 410-3",
+            amende: 800,
+            category: "Contravention 3ème classe"
+        },
+        {
+            id: "410-4",
+            name: "Excès de vitesse eu égard aux circonstances",
+            article: "Art. 410-4",
+            amende: 540,
+            category: "Contravention 3ème classe"
+        }
+    ],
+    
+    "QUATRIEME_CLASSE": [
+        {
+            id: "510-1a",
+            name: "Excès de vitesse (20 à 29 mph)",
+            article: "Art. 510-1",
+            amende: 900,
+            category: "Contravention 4ème classe"
+        },
+        {
+            id: "510-1b",
+            name: "Excès de vitesse (30 à 39 mph)",
+            article: "Art. 510-1",
+            amende: 1000,
+            category: "Contravention 4ème classe"
+        },
+        {
+            id: "510-2",
+            name: "Non respect du feu tricolore",
+            article: "Art. 510-2",
+            amende: 800,
+            category: "Contravention 4ème classe"
+        },
+        {
+            id: "510-3",
+            name: "Non respect du stop",
+            article: "Art. 510-3",
+            amende: 800,
+            category: "Contravention 4ème classe"
+        },
+        {
+            id: "510-4",
+            name: "Distraction au volant",
+            article: "Art. 510-4",
+            amende: 800,
+            category: "Contravention 4ème classe"
+        },
+        {
+            id: "510-5",
+            name: "Sens interdit",
+            article: "Art. 510-5",
+            amende: 540,
+            category: "Contravention 4ème classe"
+        },
+        {
+            id: "510-6",
+            name: "Franchissement illégal de voie",
+            article: "Art. 510-6",
+            amende: 540,
+            category: "Contravention 4ème classe"
+        },
+        {
+            id: "510-7",
+            name: "Conduite alcoolisée (0,5 à 0,8 g/L)",
+            article: "Art. 510-7",
+            amende: 800,
+            category: "Contravention 4ème classe"
+        },
+        {
+            id: "510-8",
+            name: "Non-respect de la priorité aux piétons",
+            article: "Art. 510-8",
+            amende: 750,
+            category: "Contravention 4ème classe"
+        },
+        {
+            id: "510-9",
+            name: "Distance de sécurité",
+            article: "Art. 510-9",
+            amende: 540,
+            category: "Contravention 4ème classe"
+        },
+        {
+            id: "510-11",
+            name: "Défaut de maîtrise de son véhicule",
+            article: "Art. 510-11",
+            amende: 800,
+            category: "Contravention 4ème classe"
+        },
+        {
+            id: "510-12",
+            name: "État du véhicule",
+            article: "Art. 510-12",
+            amende: 800,
+            category: "Contravention 4ème classe"
+        },
+        {
+            id: "510-13",
+            name: "Port du casque obligatoire",
+            article: "Art. 510-13",
+            amende: 800,
+            category: "Contravention 4ème classe"
+        },
+        {
+            id: "510-14",
+            name: "Port de la ceinture de sécurité",
+            article: "Art. 510-14",
+            amende: 800,
+            category: "Contravention 4ème classe"
+        }
+    ],
+    
+    "CINQUIEME_CLASSE": [
+        {
+            id: "610-1",
+            name: "Excès de vitesse (40+ mph)",
+            article: "Art. 610-1",
+            amende: 1500,
+            category: "Contravention 5ème classe"
+        },
+        {
+            id: "610-2",
+            name: "Défaut d'assurance",
+            article: "Art. 610-2",
+            amende: 1500,
+            category: "Contravention 5ème classe"
+        }
+    ],
+    
+    "DELITS_ROUTIERS": [
+        {
+            id: "710-1",
+            name: "Conduite en état d'ivresse (+ 0,8 g/L)",
+            article: "Art. 710-1",
+            prison: 2,
+            prisonRP: 0,
+            amende: 4500,
+            category: "Délit routier"
+        },
+        {
+            id: "710-2",
+            name: "Conduite dangereuse",
+            article: "Art. 710-2",
+            prison: 1,
+            prisonRP: 0,
+            amende: 3600,
+            category: "Délit routier"
+        },
+        {
+            id: "710-3",
+            name: "Conduite avec défaut de permis",
+            article: "Art. 710-3",
+            prison: 1,
+            prisonRP: 0,
+            amende: 3000,
+            category: "Délit routier"
+        },
+        {
+            id: "710-4",
+            name: "Conduite sous stupéfiants",
+            article: "Art. 710-4",
+            prison: 2,
+            prisonRP: 0,
+            amende: 7000,
+            category: "Délit routier"
+        },
+        {
+            id: "710-4-aggr",
+            name: "Conduite sous stupéfiants + alcool (≥0,4 g/L)",
+            article: "Art. 710-4",
+            prison: 3,
+            prisonRP: 0,
+            amende: 9000,
+            category: "Délit routier"
+        },
+        {
+            id: "710-5",
+            name: "Entrave à la circulation",
+            article: "Art. 710-5",
+            prison: 2,
+            prisonRP: 0,
+            amende: 4500,
+            category: "Délit routier"
+        },
+        {
+            id: "710-6",
+            name: "Conduite malgré interdiction",
+            article: "Art. 710-6",
+            prison: 2,
+            prisonRP: 0,
+            amende: 4500,
+            category: "Délit routier"
+        }
+    ]
+};
+
+// ============================================
+// DONNÉES POUR MODULE CODES
+// ============================================
+
+const CODES_CONTENT = {
+    "penal": {
+        title: "Code Pénal du Tennessee",
+        sections: CODE_PENAL
+    },
+    "route": {
+        title: "Code de la Route du Tennessee",
+        sections: CODE_ROUTE
+    },
+    "procedure-penale": {
+        title: "Code de Procédure Pénale",
+        content: `
+            <h3>LIVRE I - DISPOSITIONS GÉNÉRALES</h3>
+            <div class="code-article">
+                <div class="article-number">Art. 100-1</div>
+                <div class="article-title">Présomption d'innocence</div>
+                <div class="article-content">
+                    Toute personne poursuivie est considérée comme innocente tant qu'elle n'a pas été déclarée coupable.
+                </div>
+            </div>
+            
+            <h3>LIVRE II - DES ENQUÊTES ET DES CONTRÔLES D'IDENTITÉ</h3>
+            <div class="code-article">
+                <div class="article-number">Art. 210-1</div>
+                <div class="article-title">Enquête de flagrance</div>
+                <div class="article-content">
+                    Est qualifié de crime ou délit flagrant le crime ou le délit qui se commet actuellement, ou qui vient de se commettre.
+                    Durée : 8 jours, prolongeable 8 jours supplémentaires.
+                </div>
+            </div>
+            
+            <div class="code-article">
+                <div class="article-number">Art. 222-1</div>
+                <div class="article-title">Garde à vue</div>
+                <div class="article-content">
+                    Durée maximale : 24h, prolongeable jusqu'à 96h.<br>
+                    Droits : avocat, silence, appel téléphonique.
+                </div>
+            </div>
+            
+            <div class="code-article">
+                <div class="article-number">Art. 223-1</div>
+                <div class="article-title">Perquisition</div>
+                <div class="article-content">
+                    Flagrance : pas de mandat nécessaire.<br>
+                    Enquête préliminaire : mandat de perquisition obligatoire.
+                </div>
+            </div>
+            
+            <h3>LIVRE III - DE L'ACTION PUBLIQUE ET CIVILE</h3>
+            <div class="code-article">
+                <div class="article-number">Art. 310-2</div>
+                <div class="article-title">Opportunité des poursuites</div>
+                <div class="article-content">
+                    Le procureur dispose d'une totale liberté pour engager des poursuites, proposer une alternative, ou classer sans suite.
+                </div>
+            </div>
+            
+            <div class="code-article">
+                <div class="article-number">Art. 310-3</div>
+                <div class="article-title">CRPC</div>
+                <div class="article-content">
+                    Comparution sur reconnaissance préalable de culpabilité.<br>
+                    Conditions : délit ≤ 10 ans, réduction minimum 50%.
+                </div>
+            </div>
+            
+            <p style="margin-top: 2rem; font-style: italic; color: #666;">
+                Consultez les documents complets pour l'intégralité des articles.
+            </p>
+        `
+    },
+    "civil": {
+        title: "Code Civil",
+        content: `
+            <h3>LIVRE II - LE DROIT DES PERSONNES</h3>
+            <div class="code-article">
+                <div class="article-number">Art. 211-3</div>
+                <div class="article-title">Majorité civile</div>
+                <div class="article-content">
+                    La majorité est fixée à vingt-et-un ans accompli.
+                </div>
+            </div>
+            
+            <div class="code-article">
+                <div class="article-number">Art. 212-1</div>
+                <div class="article-title">Droit au respect à sa vie privée</div>
+                <div class="article-content">
+                    Chacun a droit au respect de sa vie privée.
+                </div>
+            </div>
+            
+            <h3>LIVRE III - LE DROIT DE LA FAMILLE</h3>
+            <div class="code-article">
+                <div class="article-number">Art. 310-1</div>
+                <div class="article-title">Mariage civil</div>
+                <div class="article-content">
+                    Le mariage civil est une union légale entre deux époux, de sexes différents ou de même sexe.
+                </div>
+            </div>
+            
+            <h3>LIVRE IV - LA RESPONSABILITÉ</h3>
+            <div class="code-article">
+                <div class="article-number">Art. 420-1</div>
+                <div class="article-title">Responsabilité délictuelle</div>
+                <div class="article-content">
+                    Tout fait quelconque de l'homme, qui cause à autrui un dommage, oblige celui par la faute duquel il est arrivé à le réparer.
+                </div>
+            </div>
+            
+            <p style="margin-top: 2rem; font-style: italic; color: #666;">
+                Référez-vous à la documentation complète pour tous les articles.
+            </p>
+        `
+    },
+    "procedure-civile": {
+        title: "Code de Procédure Civile",
+        content: `
+            <h3>LIVRE PREMIER - DISPOSITIONS GÉNÉRALES</h3>
+            <div class="code-article">
+                <div class="article-number">Art. 100-1</div>
+                <div class="article-title">Action en justice</div>
+                <div class="article-content">
+                    Toute personne physique ou morale peut intenter une action en justice.
+                </div>
+            </div>
+            
+            <h3>LIVRE QUATRIÈME - DU JUGEMENT</h3>
+            <div class="code-article">
+                <div class="article-number">Art. 410-1</div>
+                <div class="article-title">Compétence des districts judiciaires</div>
+                <div class="article-content">
+                    Les trente-et-un districts du circuit judiciaire ont compétence pour juger les litiges de leur district.
+                </div>
+            </div>
+            
+            <div class="code-article">
+                <div class="article-number">Art. 420-1</div>
+                <div class="article-title">Cour d'appel</div>
+                <div class="article-content">
+                    Délai d'appel : 10 jours à compter du prononcé de la décision.
+                </div>
+            </div>
+        `
+    },
+    "commerce": {
+        title: "Code du Commerce",
+        content: `
+            <h3>PARTIE I - ENTREPRENEURS</h3>
+            <div class="code-article">
+                <div class="article-number">Section B - Art. 1</div>
+                <div class="article-title">Enregistrement obligatoire</div>
+                <div class="article-content">
+                    Toute activité commerciale doit être enregistrée au Registre du commerce.<br>
+                    Sanction : 25.000$ d'amende maximum.
+                </div>
+            </div>
+            
+            <h3>PARTIE II - SOCIÉTÉS</h3>
+            <div class="code-article">
+                <div class="article-number">Art. 7</div>
+                <div class="article-title">Secret des affaires</div>
+                <div class="article-content">
+                    Information protégée par une société. Divulgation : 50.000$ d'amende + 6 ans de détention.
+                </div>
+            </div>
+            
+            <h3>PARTIE IV - DISPOSITIONS SPÉCIALES</h3>
+            <div class="code-article">
+                <div class="article-number">Art. 6</div>
+                <div class="article-title">Vente d'arme sans licence</div>
+                <div class="article-content">
+                    Sanction : 5.000$ d'amende + 10 ans de détention.
+                </div>
+            </div>
+        `
+    },
+    "constitution": {
+        title: "Constitution du Tennessee",
+        content: `
+            <h3>ARTICLE I - DÉCLARATION DES DROITS</h3>
+            <div class="code-article">
+                <div class="article-number">Section 1</div>
+                <div class="article-title">Pouvoir du peuple</div>
+                <div class="article-content">
+                    Tout pouvoir est inhérent au peuple. Le gouvernement est fondé sur leur autorité.
+                </div>
+            </div>
+            
+            <div class="code-article">
+                <div class="article-number">Section 3</div>
+                <div class="article-title">Droit de porter des armes</div>
+                <div class="article-content">
+                    Les citoyens ont le droit de garder et de porter des armes pour leur défense commune.
+                    Le législateur peut réglementer le port d'armes pour prévenir la criminalité.
+                </div>
+            </div>
+            
+            <h3>ARTICLE III - DÉPARTEMENT EXÉCUTIF</h3>
+            <div class="code-article">
+                <div class="article-number">Section 1</div>
+                <div class="article-title">Gouverneur</div>
+                <div class="article-content">
+                    Le pouvoir exécutif est confié à un Gouverneur pour un mandat de six mois.
+                    Maximum deux mandats consécutifs.
+                </div>
+            </div>
+            
+            <h3>ARTICLE IX - MESURES EXCEPTIONNELLES</h3>
+            <div class="code-article">
+                <div class="article-number">Section 2</div>
+                <div class="article-title">État d'urgence</div>
+                <div class="article-content">
+                    Déclenché par le Gouverneur en cas de circonstances exceptionnelles.<br>
+                    Permet : perquisitions sans mandat, couvre-feu, contrôles d'identité à grande échelle.
+                </div>
+            </div>
+        `
+    },
+    "jurisprudence": {
+        title: "Répertoire de Jurisprudence",
+        content: `
+            <h3>COUR SUPRÊME</h3>
+            <div class="code-article">
+                <div class="article-number">[P-2020-0701] WANG v. TENNESSEE GOVERNMENT</div>
+                <div class="article-content">
+                    La restriction des événements religieux sur la voie publique ne viole pas le Premier Amendement 
+                    si justifiée par la sécurité et le risque de troubles à l'ordre public.
+                </div>
+            </div>
+            
+            <div class="code-article">
+                <div class="article-number">[P-2023-0601] Requête en inconstitutionnalité</div>
+                <div class="article-content">
+                    L'exhibition d'une arme à feu dans l'espace public (Open Carry) est inconstitutionnelle 
+                    en raison des risques pour la sécurité de la communauté.
+                </div>
+            </div>
+            
+            <h3>COUR D'APPEL</h3>
+            <div class="code-article">
+                <div class="article-number">[P-2023-0601] DERRICK v. HOLLOWAY</div>
+                <div class="article-content">
+                    Un mandat de consultation de données médicales doit reposer sur un doute raisonnable 
+                    et être explicitement limité aux actes à consulter.
+                </div>
+            </div>
+            
+            <h3>COUR DE DISTRICT</h3>
+            <div class="code-article">
+                <div class="article-number">[P-2023-0401] TENNESSEE v. HUSTON</div>
+                <div class="article-content">
+                    L'identité des officiers de police ne peut être confidentielle lors d'une procédure légale, 
+                    sauf si sa divulgation met en péril leur sécurité.
+                </div>
+            </div>
+            
+            <p style="margin-top: 2rem; font-style: italic; color: #666;">
+                Consultez le répertoire complet pour toutes les jurisprudences.
+            </p>
+        `
+    }
+};
