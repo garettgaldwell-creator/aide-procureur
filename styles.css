@@ -688,3 +688,313 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* === PANNEAU ADMIN === */
+.admin-section {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 3rem auto;
+    text-align: center;
+}
+
+.login-container h3 {
+    color: var(--blue-navy);
+    margin-bottom: 1.5rem;
+}
+
+.admin-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--gray-medium);
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.admin-input:focus {
+    outline: none;
+    border-color: var(--blue-navy);
+}
+
+.admin-hint {
+    margin-top: 1rem;
+    color: var(--gray-dark);
+    font-size: 0.9rem;
+}
+
+.admin-hint code {
+    background: var(--gray-light);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-family: monospace;
+    color: var(--red-primary);
+}
+
+/* Tabs */
+.admin-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--gray-medium);
+}
+
+.admin-tab {
+    padding: 1rem 1.5rem;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-dark);
+    transition: all 0.3s ease;
+}
+
+.admin-tab:hover {
+    color: var(--blue-navy);
+}
+
+.admin-tab.active {
+    color: var(--red-primary);
+    border-bottom-color: var(--red-primary);
+}
+
+.admin-tab-content {
+    display: none;
+}
+
+.admin-tab-content.active {
+    display: block;
+}
+
+/* Controls */
+.admin-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.admin-select {
+    padding: 0.75rem;
+    border: 2px solid var(--gray-medium);
+    border-radius: 8px;
+    font-size: 1rem;
+    flex: 1;
+    min-width: 200px;
+}
+
+.admin-select:focus {
+    outline: none;
+    border-color: var(--blue-navy);
+}
+
+/* Liste des infractions */
+.admin-list {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.admin-infraction-item {
+    padding: 1rem;
+    background: var(--gray-light);
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.admin-infraction-item:hover {
+    background: var(--gray-medium);
+    transform: translateX(5px);
+}
+
+.admin-infraction-info h4 {
+    color: var(--blue-navy);
+    margin-bottom: 0.25rem;
+}
+
+.admin-infraction-info p {
+    color: var(--gray-dark);
+    font-size: 0.9rem;
+}
+
+.admin-infraction-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--gray-dark);
+    background: none;
+    border: none;
+}
+
+.modal-close:hover {
+    color: var(--red-primary);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: var(--blue-navy);
+    margin-bottom: 0.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.admin-textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 0.75rem;
+    border: 2px solid var(--gray-medium);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    resize: vertical;
+}
+
+.admin-textarea:focus {
+    outline: none;
+    border-color: var(--blue-navy);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-danger {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: var(--danger);
+    color: var(--white);
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    background: #C82333;
+    transform: translateY(-2px);
+}
+
+/* Apparence */
+.color-editor {
+    max-width: 500px;
+}
+
+.color-input {
+    width: 60px;
+    height: 40px;
+    border: 2px solid var(--gray-medium);
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+/* Sauvegarde */
+.backup-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.backup-card {
+    padding: 1.5rem;
+    background: var(--gray-light);
+    border-radius: 12px;
+    text-align: center;
+}
+
+.backup-card h4 {
+    color: var(--blue-navy);
+    margin-bottom: 0.5rem;
+}
+
+.backup-card p {
+    color: var(--gray-dark);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+/* Paramètres */
+.settings-section {
+    max-width: 600px;
+}
+
+.modifiers-settings {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.setting-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.admin-input-small {
+    padding: 0.5rem;
+    border: 2px solid var(--gray-medium);
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.admin-input-small:focus {
+    outline: none;
+    border-color: var(--blue-navy);
+}
+

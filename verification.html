@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Vérification des données</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .section { margin: 20px 0; padding: 15px; background: #f5f5f5; border-left: 4px solid #C8102E; }
+        h2 { color: #002868; }
+        .count { font-weight: bold; color: #C8102E; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Vérification des bases de données</h1>
+    
+    <div id="results"></div>
+    
+    <script src="data.js"></script>
+    <script>
+        const results = document.getElementById('results');
+        
+        // Vérifier CODE_PENAL
+        let html = '<div class="section">';
+        html += '<h2>📕 CODE PÉNAL</h2>';
+        if (typeof CODE_PENAL !== 'undefined') {
+            let totalPenal = 0;
+            Object.keys(CODE_PENAL).forEach(cat => {
+                totalPenal += CODE_PENAL[cat].length;
+            });
+            html += `<p>✅ <span class="count">${Object.keys(CODE_PENAL).length}</span> catégories</p>`;
+            html += `<p>✅ <span class="count">${totalPenal}</span> infractions totales</p>`;
+            html += '<p>Catégories: ' + Object.keys(CODE_PENAL).join(', ') + '</p>';
+        } else {
+            html += '<p>❌ CODE_PENAL non trouvé</p>';
+        }
+        html += '</div>';
+        
+        // Vérifier CODE_ROUTE
+        html += '<div class="section">';
+        html += '<h2>🚗 CODE DE LA ROUTE</h2>';
+        if (typeof CODE_ROUTE !== 'undefined') {
+            let totalRoute = 0;
+            Object.keys(CODE_ROUTE).forEach(cat => {
+                totalRoute += CODE_ROUTE[cat].length;
+            });
+            html += `<p>✅ <span class="count">${Object.keys(CODE_ROUTE).length}</span> catégories</p>`;
+            html += `<p>✅ <span class="count">${totalRoute}</span> infractions totales</p>`;
+            html += '<p>Catégories: ' + Object.keys(CODE_ROUTE).join(', ') + '</p>';
+        } else {
+            html += '<p>❌ CODE_ROUTE non trouvé</p>';
+        }
+        html += '</div>';
+        
+        // Vérifier CODES_CONTENT
+        html += '<div class="section">';
+        html += '<h2>📚 CODES_CONTENT</h2>';
+        if (typeof CODES_CONTENT !== 'undefined') {
+            html += `<p>✅ <span class="count">${Object.keys(CODES_CONTENT).length}</span> codes disponibles</p>`;
+            html += '<ul>';
+            Object.keys(CODES_CONTENT).forEach(code => {
+                const data = CODES_CONTENT[code];
+                if (data.sections) {
+                    html += `<li><strong>${code}</strong>: ${data.title} (${Object.keys(data.sections).length} sections)</li>`;
+                } else if (data.content) {
+                    html += `<li><strong>${code}</strong>: ${data.title} (contenu HTML)</li>`;
+                }
+            });
+            html += '</ul>';
+        } else {
+            html += '<p>❌ CODES_CONTENT non trouvé</p>';
+        }
+        html += '</div>';
+        
+        results.innerHTML = html;
+    </script>
+</body>
+</html>

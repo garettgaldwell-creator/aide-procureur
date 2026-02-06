@@ -30,6 +30,10 @@
                     <span class="icon">📋</span>
                     Procédures
                 </button>
+                <button class="nav-btn" data-module="admin" style="margin-left: auto;">
+                    <span class="icon">🔐</span>
+                    Admin
+                </button>
             </nav>
         </div>
     </header>
@@ -211,6 +215,214 @@
             </div>
         </section>
 
+        <!-- MODULE 4: ADMINISTRATION -->
+        <section id="admin" class="module">
+            <div class="module-header">
+                <h2>🔐 Panneau d'administration</h2>
+                <p>Gérez les infractions, codes et apparence du site</p>
+            </div>
+
+            <!-- Login -->
+            <div id="admin-login" class="admin-section">
+                <div class="login-container">
+                    <h3>Accès sécurisé</h3>
+                    <input type="password" id="admin-password" placeholder="Entrez le mot de passe administrateur" class="admin-input">
+                    <button id="admin-login-btn" class="btn-primary">Se connecter</button>
+                    <p class="admin-hint">💡 Mot de passe par défaut : <code>admin2026</code></p>
+                </div>
+            </div>
+
+            <!-- Admin Panel (caché par défaut) -->
+            <div id="admin-panel" class="admin-section" style="display: none;">
+                
+                <!-- Tabs -->
+                <div class="admin-tabs">
+                    <button class="admin-tab active" data-tab="infractions">📝 Gérer les infractions</button>
+                    <button class="admin-tab" data-tab="appearance">🎨 Apparence</button>
+                    <button class="admin-tab" data-tab="export">💾 Sauvegarde</button>
+                    <button class="admin-tab" data-tab="settings">⚙️ Paramètres</button>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="admin-content">
+                    
+                    <!-- ONGLET INFRACTIONS -->
+                    <div id="tab-infractions" class="admin-tab-content active">
+                        <h3>Gestion des infractions</h3>
+                        
+                        <div class="admin-controls">
+                            <select id="admin-code-select" class="admin-select">
+                                <option value="penal">Code Pénal</option>
+                                <option value="route">Code de la Route</option>
+                            </select>
+                            
+                            <select id="admin-category-select" class="admin-select">
+                                <option value="">Sélectionnez une catégorie...</option>
+                            </select>
+                            
+                            <button id="admin-add-infraction-btn" class="btn-primary">+ Ajouter une infraction</button>
+                        </div>
+
+                        <div id="admin-infractions-list" class="admin-list">
+                            <!-- Liste des infractions éditables -->
+                        </div>
+
+                        <!-- Modal d'édition -->
+                        <div id="edit-modal" class="modal" style="display: none;">
+                            <div class="modal-content">
+                                <span class="modal-close">&times;</span>
+                                <h3 id="modal-title">Éditer l'infraction</h3>
+                                
+                                <div class="form-group">
+                                    <label>Nom de l'infraction</label>
+                                    <input type="text" id="edit-name" class="admin-input">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Article</label>
+                                    <input type="text" id="edit-article" class="admin-input">
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Prison (années)</label>
+                                        <input type="number" id="edit-prison" class="admin-input" step="0.25">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label>Prison RP (minutes)</label>
+                                        <input type="number" id="edit-prison-rp" class="admin-input">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Amende ($)</label>
+                                    <input type="number" id="edit-amende" class="admin-input">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Catégorie</label>
+                                    <select id="edit-category" class="admin-select">
+                                        <option value="Crime">Crime</option>
+                                        <option value="Délit">Délit</option>
+                                        <option value="Contravention">Contravention</option>
+                                        <option value="Délit routier">Délit routier</option>
+                                        <option value="Contravention 1ère classe">Contravention 1ère classe</option>
+                                        <option value="Contravention 2ème classe">Contravention 2ème classe</option>
+                                        <option value="Contravention 3ème classe">Contravention 3ème classe</option>
+                                        <option value="Contravention 4ème classe">Contravention 4ème classe</option>
+                                        <option value="Contravention 5ème classe">Contravention 5ème classe</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea id="edit-description" class="admin-textarea"></textarea>
+                                </div>
+                                
+                                <div class="modal-actions">
+                                    <button id="save-infraction" class="btn-primary">💾 Enregistrer</button>
+                                    <button id="delete-infraction" class="btn-danger">🗑️ Supprimer</button>
+                                    <button class="btn-secondary modal-close">Annuler</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ONGLET APPARENCE -->
+                    <div id="tab-appearance" class="admin-tab-content">
+                        <h3>Personnalisation de l'apparence</h3>
+                        
+                        <div class="color-editor">
+                            <div class="form-group">
+                                <label>🔴 Couleur principale (Rouge)</label>
+                                <input type="color" id="color-primary" value="#C8102E" class="color-input">
+                                <input type="text" id="color-primary-text" value="#C8102E" class="admin-input">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>🔵 Couleur secondaire (Bleu)</label>
+                                <input type="color" id="color-secondary" value="#002868" class="color-input">
+                                <input type="text" id="color-secondary-text" value="#002868" class="admin-input">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>🟡 Couleur accent (Or)</label>
+                                <input type="color" id="color-accent" value="#F4E5C3" class="color-input">
+                                <input type="text" id="color-accent-text" value="#F4E5C3" class="admin-input">
+                            </div>
+                            
+                            <button id="apply-colors" class="btn-primary">✨ Appliquer les couleurs</button>
+                            <button id="reset-colors" class="btn-secondary">🔄 Réinitialiser</button>
+                        </div>
+                    </div>
+
+                    <!-- ONGLET SAUVEGARDE -->
+                    <div id="tab-export" class="admin-tab-content">
+                        <h3>Sauvegarde et restauration</h3>
+                        
+                        <div class="backup-section">
+                            <div class="backup-card">
+                                <h4>💾 Exporter la base de données</h4>
+                                <p>Téléchargez toutes les infractions en JSON</p>
+                                <button id="export-data" class="btn-primary">Télécharger data.js</button>
+                            </div>
+                            
+                            <div class="backup-card">
+                                <h4>📤 Importer une base de données</h4>
+                                <p>Remplacez les données actuelles</p>
+                                <input type="file" id="import-data" accept=".js,.json" style="display: none;">
+                                <button id="import-data-btn" class="btn-secondary">Choisir un fichier</button>
+                            </div>
+                            
+                            <div class="backup-card">
+                                <h4>🔄 Réinitialiser</h4>
+                                <p>Restaurer les données d'origine</p>
+                                <button id="reset-data" class="btn-danger">⚠️ Réinitialiser tout</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ONGLET PARAMÈTRES -->
+                    <div id="tab-settings" class="admin-tab-content">
+                        <h3>Paramètres du système</h3>
+                        
+                        <div class="settings-section">
+                            <div class="form-group">
+                                <label>🔐 Changer le mot de passe admin</label>
+                                <input type="password" id="new-password" class="admin-input" placeholder="Nouveau mot de passe">
+                                <button id="change-password" class="btn-primary">Modifier</button>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Modificateurs par défaut</label>
+                                <div class="modifiers-settings">
+                                    <div class="setting-item">
+                                        <label>Coopération (%):</label>
+                                        <input type="number" id="setting-cooperation" value="25" min="0" max="100" class="admin-input-small">
+                                    </div>
+                                    <div class="setting-item">
+                                        <label>Aveux (%):</label>
+                                        <input type="number" id="setting-aveux" value="15" min="0" max="100" class="admin-input-small">
+                                    </div>
+                                    <div class="setting-item">
+                                        <label>Trouble psy (%):</label>
+                                        <input type="number" id="setting-trouble" value="33" min="0" max="100" class="admin-input-small">
+                                    </div>
+                                </div>
+                                <button id="save-settings" class="btn-primary">💾 Enregistrer</button>
+                            </div>
+                            
+                            <div class="form-group">
+                                <button id="logout-admin" class="btn-secondary">🚪 Déconnexion</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer -->
@@ -221,5 +433,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="data.js"></script>
     <script src="app.js"></script>
+    <script src="admin.js"></script>
 </body>
 </html>

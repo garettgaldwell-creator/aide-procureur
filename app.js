@@ -996,3 +996,4 @@ function displayProcedure(type, container) {
         ${proc.content}
     `;
 }
+
