@@ -136,11 +136,20 @@ function loadAdminInfractions() {
             item.className = 'admin-infraction-item';
             item.onclick = () => openEditModal(inf, false, codeType, cat);
             
+            const prisonDisplay = inf.prison ? `${inf.prison} ans` : 'Aucune';
+            const amendeDisplay = inf.amende ? `${inf.amende.toLocaleString()} $` : '0 $';
+            
             item.innerHTML = `
                 <div class="admin-infraction-info">
-                    <h4>${inf.name}</h4>
-                    <p>${inf.article} • ${inf.category} • ${inf.prison || 0} ans • ${(inf.amende || 0).toLocaleString()} $</p>
+                    <h4>📌 ${inf.name}</h4>
+                    <p>
+                        <span>📄 ${inf.article}</span>
+                        <span>⚖️ ${inf.category}</span>
+                        <span>⏱️ ${prisonDisplay}</span>
+                        <span>💰 ${amendeDisplay}</span>
+                    </p>
                 </div>
+                <div style="color: var(--red-primary); font-size: 1.5rem;">✏️</div>
             `;
             
             container.appendChild(item);
@@ -148,7 +157,7 @@ function loadAdminInfractions() {
     });
     
     if (container.children.length === 0) {
-        container.innerHTML = '<p style="text-align: center; color: #666;">Aucune infraction trouvée</p>';
+        container.innerHTML = '<p style="text-align: center; color: #666; padding: 3rem;">📭 Aucune infraction trouvée</p>';
     }
 }
 

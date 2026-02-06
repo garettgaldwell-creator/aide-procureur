@@ -409,9 +409,8 @@ function exportToPDF() {
         return;
     }
     
-    // Récupérer les résultats actuels
-    const prison = document.getElementById('prison-time').textContent;
-    const rp = document.getElementById('prison-rp').textContent;
+    // Récupérer les résultats actuels (seulement les années, pas les minutes RP)
+    const prisonText = document.getElementById('prison-time').textContent; // "X ans"
     const fines = document.getElementById('fines').textContent;
     const category = document.getElementById('category').textContent;
     
@@ -423,229 +422,248 @@ function exportToPDF() {
     const pageWidth = doc.internal.pageSize.getWidth();
     const pageHeight = doc.internal.pageSize.getHeight();
     const margin = 20;
-    let yPos = 20;
+    let yPos = 25;
     
-    // === EN-TÊTE ===
-    doc.setFillColor(200, 16, 46); // Rouge du logo
-    doc.rect(0, 0, pageWidth, 40, 'F');
+    // === CHARGER LE LOGO ===
+    const logo = new Image();
+    logo.src = 'logo.png';
     
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(20);
-    doc.setFont(undefined, 'bold');
-    doc.text('BUREAU DU PROCUREUR', pageWidth / 2, 15, { align: 'center' });
-    
-    doc.setFontSize(12);
-    doc.setFont(undefined, 'normal');
-    doc.text('Davidson County - Tennessee', pageWidth / 2, 25, { align: 'center' });
-    doc.text('RAPPORT DE RÉQUISITIONS', pageWidth / 2, 32, { align: 'center' });
-    
-    yPos = 50;
-    
-    // === INFORMATIONS GÉNÉRALES ===
-    doc.setTextColor(0, 40, 104);
-    doc.setFontSize(10);
-    doc.setFont(undefined, 'normal');
-    
-    const today = new Date();
-    doc.text(`Date: ${today.toLocaleDateString('fr-FR')}`, margin, yPos);
-    doc.text(`Heure: ${today.toLocaleTimeString('fr-FR')}`, pageWidth - margin - 40, yPos);
-    
-    yPos += 15;
-    
-    // === SECTION INFRACTIONS ===
-    doc.setDrawColor(200, 16, 46);
-    doc.setLineWidth(0.5);
-    doc.line(margin, yPos, pageWidth - margin, yPos);
-    yPos += 7;
-    
-    doc.setFontSize(14);
-    doc.setFont(undefined, 'bold');
-    doc.setTextColor(200, 16, 46);
-    doc.text('INFRACTIONS RETENUES', margin, yPos);
-    
-    yPos += 10;
-    doc.setFontSize(10);
-    doc.setTextColor(0, 0, 0);
-    doc.setFont(undefined, 'normal');
-    
-    state.selectedInfractions.forEach((inf, index) => {
-        // Vérifier si on doit ajouter une nouvelle page
-        if (yPos > pageHeight - 40) {
-            doc.addPage();
-            yPos = 20;
-        }
+    logo.onload = function() {
+        // === AJOUTER LE LOGO ===
+        doc.addImage(logo, 'JPEG', margin, 10, 20, 20);
         
+        // === EN-TÊTE ===
+        doc.setFillColor(200, 16, 46);
+        doc.rect(0, 0, pageWidth, 40, 'F');
+        
+        doc.setTextColor(255, 255, 255);
+        doc.setFontSize(20);
         doc.setFont(undefined, 'bold');
-        doc.text(`${index + 1}. ${inf.name}`, margin + 5, yPos);
-        yPos += 5;
+        doc.text('BUREAU DU PROCUREUR', pageWidth / 2, 15, { align: 'center' });
         
+        doc.setFontSize(12);
         doc.setFont(undefined, 'normal');
-        doc.setFontSize(9);
-        doc.setTextColor(100, 100, 100);
-        doc.text(`${inf.article} - ${inf.category}`, margin + 10, yPos);
-        yPos += 4;
-        doc.text(`Peine de base: ${inf.prison} ans • ${inf.amende.toLocaleString()} $`, margin + 10, yPos);
+        doc.text('Davidson County - Tennessee', pageWidth / 2, 25, { align: 'center' });
+        doc.text('RAPPORT DE RÉQUISITIONS', pageWidth / 2, 32, { align: 'center' });
         
-        yPos += 8;
+        yPos = 50;
+        
+        // === INFORMATIONS GÉNÉRALES ===
+        doc.setTextColor(0, 40, 104);
         doc.setFontSize(10);
-        doc.setTextColor(0, 0, 0);
-    });
-    
-    yPos += 5;
-    
-    // === SECTION MODIFICATEURS ===
-    if (yPos > pageHeight - 60) {
-        doc.addPage();
-        yPos = 20;
-    }
-    
-    doc.setDrawColor(200, 16, 46);
-    doc.line(margin, yPos, pageWidth - margin, yPos);
-    yPos += 7;
-    
-    doc.setFontSize(14);
-    doc.setFont(undefined, 'bold');
-    doc.setTextColor(200, 16, 46);
-    doc.text('MODIFICATEURS APPLIQUÉS', margin, yPos);
-    
-    yPos += 10;
-    doc.setFontSize(10);
-    doc.setTextColor(0, 0, 0);
-    doc.setFont(undefined, 'normal');
-    
-    let hasModifiers = false;
-    if (state.modifiers.recidive1) {
-        doc.text('✓ Récidive (1ère) - Peine doublée', margin + 5, yPos);
-        yPos += 6;
-        hasModifiers = true;
-    }
-    if (state.modifiers.recidive2) {
-        doc.text('✓ Récidive (2ème) - Peine triplée', margin + 5, yPos);
-        yPos += 6;
-        hasModifiers = true;
-    }
-    if (state.modifiers.mineur) {
-        doc.text('✓ Mineur (< 21 ans) - Peine divisée par 2', margin + 5, yPos);
-        yPos += 6;
-        hasModifiers = true;
-    }
-    if (state.modifiers.cooperation) {
-        doc.text('✓ Coopération avec la justice - Réduction de 25%', margin + 5, yPos);
-        yPos += 6;
-        hasModifiers = true;
-    }
-    if (state.modifiers.aveux) {
-        doc.text('✓ Aveux complets - Réduction de 15%', margin + 5, yPos);
-        yPos += 6;
-        hasModifiers = true;
-    }
-    if (state.modifiers.troublePsy) {
-        doc.text('✓ Trouble psychique - Réduction de 33%', margin + 5, yPos);
-        yPos += 6;
-        hasModifiers = true;
-    }
-    
-    if (!hasModifiers) {
-        doc.setTextColor(100, 100, 100);
-        doc.setFont(undefined, 'italic');
-        doc.text('Aucun modificateur appliqué', margin + 5, yPos);
-        yPos += 6;
         doc.setFont(undefined, 'normal');
-        doc.setTextColor(0, 0, 0);
-    }
-    
-    yPos += 5;
-    
-    // === SECTION RÉQUISITIONS FINALES ===
-    if (yPos > pageHeight - 70) {
-        doc.addPage();
-        yPos = 20;
-    }
-    
-    doc.setDrawColor(200, 16, 46);
-    doc.line(margin, yPos, pageWidth - margin, yPos);
-    yPos += 7;
-    
-    doc.setFontSize(14);
-    doc.setFont(undefined, 'bold');
-    doc.setTextColor(200, 16, 46);
-    doc.text('RÉQUISITIONS FINALES', margin, yPos);
-    
-    yPos += 12;
-    
-    // Cadre pour les réquisitions
-    doc.setFillColor(245, 245, 245);
-    doc.roundedRect(margin, yPos - 5, pageWidth - 2 * margin, 35, 3, 3, 'F');
-    
-    doc.setFontSize(11);
-    doc.setTextColor(0, 40, 104);
-    doc.setFont(undefined, 'bold');
-    
-    doc.text(`Catégorie: ${category}`, margin + 5, yPos + 3);
-    yPos += 10;
-    doc.text(`Emprisonnement: ${prison} ${rp}`, margin + 5, yPos);
-    yPos += 10;
-    doc.text(`Amendes: ${fines}`, margin + 5, yPos);
-    
-    yPos += 15;
-    
-    // === SECTION CRPC (si applicable) ===
-    const crpcCard = document.getElementById('crpc-card');
-    if (crpcCard.style.display !== 'none') {
-        if (yPos > pageHeight - 50) {
-            doc.addPage();
-            yPos = 20;
-        }
         
-        yPos += 5;
-        doc.setDrawColor(40, 167, 69);
+        const today = new Date();
+        doc.text(`Date: ${today.toLocaleDateString('fr-FR')}`, margin, yPos);
+        doc.text(`Heure: ${today.toLocaleTimeString('fr-FR')}`, pageWidth - margin - 40, yPos);
+        
+        yPos += 15;
+        
+        // === SECTION INFRACTIONS ===
+        doc.setDrawColor(200, 16, 46);
         doc.setLineWidth(0.5);
         doc.line(margin, yPos, pageWidth - margin, yPos);
         yPos += 7;
         
         doc.setFontSize(14);
         doc.setFont(undefined, 'bold');
-        doc.setTextColor(40, 167, 69);
-        doc.text('CRPC POSSIBLE (Plaider-coupable)', margin, yPos);
+        doc.setTextColor(200, 16, 46);
+        doc.text('INFRACTIONS RETENUES', margin, yPos);
         
         yPos += 10;
-        doc.setFillColor(232, 245, 233);
-        doc.roundedRect(margin, yPos - 5, pageWidth - 2 * margin, 20, 3, 3, 'F');
-        
         doc.setFontSize(10);
         doc.setTextColor(0, 0, 0);
         doc.setFont(undefined, 'normal');
-        doc.text('En cas de reconnaissance de culpabilité (réduction de 50%):', margin + 5, yPos + 2);
         
-        yPos += 8;
+        state.selectedInfractions.forEach((inf, index) => {
+            if (yPos > pageHeight - 40) {
+                doc.addPage();
+                yPos = 20;
+            }
+            
+            doc.setFont(undefined, 'bold');
+            doc.text(`${index + 1}. ${inf.name}`, margin + 5, yPos);
+            yPos += 5;
+            
+            doc.setFont(undefined, 'normal');
+            doc.setFontSize(9);
+            doc.setTextColor(100, 100, 100);
+            doc.text(`${inf.article} - ${inf.category}`, margin + 10, yPos);
+            yPos += 4;
+            doc.text(`Peine de base: ${inf.prison} ans • ${inf.amende.toLocaleString()} $`, margin + 10, yPos);
+            
+            yPos += 8;
+            doc.setFontSize(10);
+            doc.setTextColor(0, 0, 0);
+        });
+        
+        yPos += 5;
+        
+        // === SECTION MODIFICATEURS ===
+        if (yPos > pageHeight - 60) {
+            doc.addPage();
+            yPos = 20;
+        }
+        
+        doc.setDrawColor(200, 16, 46);
+        doc.line(margin, yPos, pageWidth - margin, yPos);
+        yPos += 7;
+        
+        doc.setFontSize(14);
         doc.setFont(undefined, 'bold');
-        const crpcPrisonText = document.getElementById('crpc-prison').textContent;
-        const crpcRPText = document.getElementById('crpc-rp').textContent;
-        doc.text(`${crpcPrisonText} ${crpcRPText}`, margin + 5, yPos);
+        doc.setTextColor(200, 16, 46);
+        doc.text('MODIFICATEURS APPLIQUÉS', margin, yPos);
         
         yPos += 10;
-    }
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 0);
+        doc.setFont(undefined, 'normal');
+        
+        let hasModifiers = false;
+        if (state.modifiers.recidive1) {
+            doc.text('✓ Récidive (1ère) - Peine doublée', margin + 5, yPos);
+            yPos += 6;
+            hasModifiers = true;
+        }
+        if (state.modifiers.recidive2) {
+            doc.text('✓ Récidive (2ème) - Peine triplée', margin + 5, yPos);
+            yPos += 6;
+            hasModifiers = true;
+        }
+        if (state.modifiers.mineur) {
+            doc.text('✓ Mineur (< 21 ans) - Peine divisée par 2', margin + 5, yPos);
+            yPos += 6;
+            hasModifiers = true;
+        }
+        if (state.modifiers.cooperation) {
+            doc.text('✓ Coopération avec la justice - Réduction de 25%', margin + 5, yPos);
+            yPos += 6;
+            hasModifiers = true;
+        }
+        if (state.modifiers.aveux) {
+            doc.text('✓ Aveux complets - Réduction de 15%', margin + 5, yPos);
+            yPos += 6;
+            hasModifiers = true;
+        }
+        if (state.modifiers.troublePsy) {
+            doc.text('✓ Trouble psychique - Réduction de 33%', margin + 5, yPos);
+            yPos += 6;
+            hasModifiers = true;
+        }
+        
+        if (!hasModifiers) {
+            doc.setTextColor(100, 100, 100);
+            doc.setFont(undefined, 'italic');
+            doc.text('Aucun modificateur appliqué', margin + 5, yPos);
+            yPos += 6;
+            doc.setFont(undefined, 'normal');
+            doc.setTextColor(0, 0, 0);
+        }
+        
+        yPos += 5;
+        
+        // === SECTION RÉQUISITIONS FINALES ===
+        if (yPos > pageHeight - 70) {
+            doc.addPage();
+            yPos = 20;
+        }
+        
+        doc.setDrawColor(200, 16, 46);
+        doc.line(margin, yPos, pageWidth - margin, yPos);
+        yPos += 7;
+        
+        doc.setFontSize(14);
+        doc.setFont(undefined, 'bold');
+        doc.setTextColor(200, 16, 46);
+        doc.text('RÉQUISITIONS FINALES', margin, yPos);
+        
+        yPos += 12;
+        
+        // Cadre pour les réquisitions
+        doc.setFillColor(245, 245, 245);
+        doc.roundedRect(margin, yPos - 5, pageWidth - 2 * margin, 25, 3, 3, 'F');
+        
+        doc.setFontSize(11);
+        doc.setTextColor(0, 40, 104);
+        doc.setFont(undefined, 'bold');
+        
+        doc.text(`Catégorie: ${category}`, margin + 5, yPos + 3);
+        yPos += 10;
+        // Afficher SEULEMENT les années (pas les minutes RP)
+        doc.text(`Emprisonnement: ${prisonText}`, margin + 5, yPos);
+        yPos += 10;
+        doc.text(`Amendes: ${fines}`, margin + 5, yPos);
+        
+        yPos += 15;
+        
+        // === SECTION CRPC (si applicable) ===
+        const crpcCard = document.getElementById('crpc-card');
+        if (crpcCard.style.display !== 'none') {
+            if (yPos > pageHeight - 50) {
+                doc.addPage();
+                yPos = 20;
+            }
+            
+            yPos += 5;
+            doc.setDrawColor(40, 167, 69);
+            doc.setLineWidth(0.5);
+            doc.line(margin, yPos, pageWidth - margin, yPos);
+            yPos += 7;
+            
+            doc.setFontSize(14);
+            doc.setFont(undefined, 'bold');
+            doc.setTextColor(40, 167, 69);
+            doc.text('CRPC POSSIBLE (Plaider-coupable)', margin, yPos);
+            
+            yPos += 10;
+            doc.setFillColor(232, 245, 233);
+            doc.roundedRect(margin, yPos - 5, pageWidth - 2 * margin, 20, 3, 3, 'F');
+            
+            doc.setFontSize(10);
+            doc.setTextColor(0, 0, 0);
+            doc.setFont(undefined, 'normal');
+            doc.text('En cas de reconnaissance de culpabilité (réduction de 50%):', margin + 5, yPos + 2);
+            
+            yPos += 8;
+            doc.setFont(undefined, 'bold');
+            
+            // Récupérer le texte CRPC et supprimer la partie RP entre parenthèses
+            const crpcPrisonText = document.getElementById('crpc-prison').textContent;
+            // Retirer tout ce qui est entre parenthèses (les minutes RP)
+            const crpcClean = crpcPrisonText.replace(/\([^)]*\)/g, '').trim();
+            
+            doc.text(crpcClean, margin + 5, yPos);
+            
+            yPos += 10;
+        }
+        
+        // === SIGNATURE ===
+        yPos = pageHeight - 40;
+        doc.setDrawColor(0, 0, 0);
+        doc.setLineWidth(0.3);
+        doc.line(margin, yPos, margin + 80, yPos);
+        doc.line(pageWidth - margin - 80, yPos, pageWidth - margin, yPos);
+        
+        doc.setFontSize(9);
+        doc.setTextColor(0, 0, 0);
+        doc.setFont(undefined, 'normal');
+        doc.text('Procureur', margin + 20, yPos + 6);
+        doc.text('Signature', pageWidth - margin - 60, yPos + 6);
+        
+        // === BAS DE PAGE ===
+        doc.setFontSize(8);
+        doc.setTextColor(150, 150, 150);
+        doc.text('Bureau du Procureur - Davidson County, Tennessee', pageWidth / 2, pageHeight - 10, { align: 'center' });
+        
+        // Télécharger le PDF
+        doc.save(`requisitions_${Date.now()}.pdf`);
+    };
     
-    // === SIGNATURE ===
-    yPos = pageHeight - 40;
-    doc.setDrawColor(0, 0, 0);
-    doc.setLineWidth(0.3);
-    doc.line(margin, yPos, margin + 80, yPos);
-    doc.line(pageWidth - margin - 80, yPos, pageWidth - margin, yPos);
-    
-    doc.setFontSize(9);
-    doc.setTextColor(0, 0, 0);
-    doc.setFont(undefined, 'normal');
-    doc.text('Procureur', margin + 20, yPos + 6);
-    doc.text('Signature', pageWidth - margin - 60, yPos + 6);
-    
-    // === BAS DE PAGE ===
-    doc.setFontSize(8);
-    doc.setTextColor(150, 150, 150);
-    doc.text('Bureau du Procureur - Davidson County, Tennessee', pageWidth / 2, pageHeight - 10, { align: 'center' });
-    
-    // Télécharger le PDF
-    doc.save(`requisitions_${Date.now()}.pdf`);
+    // Si le logo ne charge pas
+    logo.onerror = function() {
+        console.error('Impossible de charger le logo');
+        alert('⚠️ Le logo n\'a pas pu être chargé. Vérifiez que logo.png est présent.');
+    };
 }
 
 // === MODULE CODES ===
@@ -952,13 +970,11 @@ function displayProcedure(type, container) {
             content: `
                 <h3>Texte légal à réciter</h3>
                 <div style="background: #F5F5F5; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #C8102E; margin: 1rem 0;">
-                    <p><strong>Vous avez le droit :</strong></p>
-                    <ul>
-                        <li>De garder le silence</li>
-                        <li>D'être assisté par un avocat désigné par vous ou commis d'office</li>
-                        <li>De faire des déclarations ou de répondre aux questions qui vous sont posées</li>
-                    </ul>
-                    <p><strong>Tout ce que vous direz pourra être retenu contre vous.</strong></p>
+                    <p><strong>Vous avez le droit de garder le silence.</strong></p>
+                    <p><strong>Tout ce que vous direz pourra et sera utilisé contre vous devant un tribunal.</strong></p>
+                    <p><strong>Vous avez le droit de parler à un avocat et de le faire assister pendant l'interrogatoire.</strong></p>
+                    <p><strong>Si vous ne pouvez pas vous payer un avocat, un avocat vous sera commis d'office.</strong></p>
+                    <p><strong>Vous pouvez décider à tout moment d'exercer ces droits et de ne plus répondre aux questions.</strong></p>
                 </div>
                 
                 <h3>Quand notifier les droits ?</h3>
